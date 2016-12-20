@@ -9,18 +9,34 @@
     <version>1.0-SNAPSHOT</version>
 
     <repositories>
+        <!-- JDA - Discord API for Java -->
         <repository>
             <id>jcenter</id>
             <name>jcenter-bintray</name>
             <url>http://jcenter.bintray.com</url>
         </repository>
+
+        <!-- SnakeYAML -->
+        <repository>
+            <id>Sonatype-public</id>
+            <name>SnakeYAML repository</name>
+            <url>http://oss.sonatype.org/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+        <!-- JDA - Discord API for Java -->
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
             <version>3.0.BETA2_108</version>
+        </dependency>
+
+        <!-- SnakeYAML -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.17</version>
         </dependency>
     </dependencies>
 </project>
