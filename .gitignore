@@ -2,3 +2,6 @@
 
 .idea/
 jathemez-bot.iml
+
+out/*
+target/*
