@@ -1,0 +1,12 @@
+#
+#   Config for jathemez-bot.
+#
+
+# Leave this line alone
+
+config-rev: 1
+
+# The bot token you received when creating your bot.
+# More info can be found on the wiki https://github.com/jammehcow/jathemez-bot/wiki
+
+botKey: "your_discord_bot_token"
