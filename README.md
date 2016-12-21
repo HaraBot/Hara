@@ -1,6 +1,6 @@
 # Hara
 
-A small and highly extensible discord bot through the Lua scripting language. It's young, and therefore prone to crashes.
+Hara (the Japanese word for "original") is a small and highly extensible discord bot through the Lua scripting language. It's young, and therefore prone to crashes.
 If something happens that wasn't supposed to, check to see if someone else has reported it as an issue or report it yourself with the log.
 
 ## Installation
