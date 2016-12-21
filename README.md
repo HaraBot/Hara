@@ -7,6 +7,7 @@ If something happens that wasn't supposed to, check to see if someone else has r
 
 Pre-requisites:
  - Java 8 or higher
+ - Quite possibly ffmpeg
 
 ## Usage
 
