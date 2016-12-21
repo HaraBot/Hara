@@ -22,11 +22,10 @@
     </build>
 
     <repositories>
-        <!-- JDA - Discord API for Java -->
+        <!-- Discord4J -->
         <repository>
-            <id>jcenter</id>
-            <name>jcenter-bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
 
         <!-- SnakeYAML -->
@@ -38,11 +37,11 @@
     </repositories>
 
     <dependencies>
-        <!-- JDA - Discord API for Java -->
+        <!-- Discord4J -->
         <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
-            <version>3.0.BETA2_108</version>
+            <groupId>com.github.austinv11</groupId>
+            <artifactId>Discord4j</artifactId>
+            <version>2.6.1</version>
         </dependency>
 
         <!-- SnakeYAML -->
