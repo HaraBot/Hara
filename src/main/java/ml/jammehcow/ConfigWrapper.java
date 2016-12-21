@@ -12,6 +12,10 @@ import java.io.InputStream;
  */
 
 public class ConfigWrapper {
+    // TODO: Work on later.
+
+    private final int CURRENT_REV = 1;
+
     public static Yaml loadConfig() {
         // Will return Yaml later on
         Yaml yaml = new Yaml();
@@ -23,8 +27,7 @@ public class ConfigWrapper {
             if (!cfgFile.exists()) {
                 InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
 
-                if (resource == null)
-                    throw new FileNotFoundException("config.yml not found. What've you done Timmy?!");
+                if (resource == null) throw new FileNotFoundException("config.yml not found. What've you done Timmy?!");
             }
 
             //InputStream input = new FileInputStream();
