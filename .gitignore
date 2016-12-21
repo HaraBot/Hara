@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 
 .idea/
-hara.iml
 
 out/*
 target/*
+hara.iml
