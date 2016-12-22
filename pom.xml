@@ -64,5 +64,12 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+
+        <!-- Discord4J Addon - Commands4J -->
+        <dependency>
+            <groupId>com.github.Discord4J-Addons</groupId>
+            <artifactId>Commands4J</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
 </project>
