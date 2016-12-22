@@ -11,6 +11,9 @@ import sx.blah.discord.util.DiscordException;
  */
 
 public class Main {
+    // Will replace with config values
+    private static final String token  = "bottoken";
+    private static final String prefix = "!";
 
     public static IDiscordClient getClient(String token) throws DiscordException {
         ClientBuilder clientBuilder = new ClientBuilder();
