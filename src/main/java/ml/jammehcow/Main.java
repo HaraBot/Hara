@@ -6,8 +6,6 @@ import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
 
-import java.util.Map;
-
 import static ml.jammehcow.ConfigWrapper.getConfig;
 
 /**
