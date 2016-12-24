@@ -1,10 +1,13 @@
 package ml.jammehcow;
 
-import org.yaml.snakeyaml.Yaml;
+import com.esotericsoftware.yamlbeans.YamlException;
+import com.esotericsoftware.yamlbeans.YamlReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
+import java.util.Map;
 
 /**
  * Author: jammehcow.
@@ -12,17 +15,14 @@ import java.io.InputStream;
  */
 
 public class ConfigWrapper {
-    // TODO: Work on later.
-
     private final int CURRENT_REV = 1;
 
-    public static Yaml loadConfig() {
-        // Will return Yaml later on
-        Yaml yaml = new Yaml();
+    public static Config getConfig() {
+        @SuppressWarnings("unchecked")
+        Config results = null;
 
         try {
-            // TODO: Improve the fuck out of this. Suggestions?
-            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + "config.yml");
+            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator +"config.yml");
 
             if (!cfgFile.exists()) {
                 InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
@@ -30,12 +30,16 @@ public class ConfigWrapper {
                 if (resource == null) throw new FileNotFoundException("config.yml not found. What've you done Timmy?!");
             }
 
-            //InputStream input = new FileInputStream();
+            YamlReader reader = new YamlReader(new FileReader("config.yml"));
+            Config object = reader.read(Config.class);
+            results = object;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (YamlException e) {
+            e.printStackTrace();
         }
 
-        return yaml;
+        return results;
     }
 }
