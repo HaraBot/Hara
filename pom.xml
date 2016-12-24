@@ -27,13 +27,6 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
-
-        <!-- SnakeYAML -->
-        <repository>
-            <id>Sonatype-public</id>
-            <name>SnakeYAML repository</name>
-            <url>http://oss.sonatype.org/content/groups/public/</url>
-        </repository>
     </repositories>
 
     <dependencies>
