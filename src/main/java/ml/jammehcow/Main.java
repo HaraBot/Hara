@@ -27,8 +27,9 @@ public class Main {
     private static final String prefix = config.prefix;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DiscordException {
         logger.info("Starting Hara v" + REV);
+        getClient();
     }
 
     public static IDiscordClient getClient() throws DiscordException {
