@@ -25,7 +25,7 @@ public class ConfigWrapper {
 
                 if (resource == null) {
                     try {
-                        exportResource("/config.yml");
+                        exportResource("config.yml");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -50,7 +50,7 @@ public class ConfigWrapper {
         OutputStream resStreamOut = null;
         String jarFolder;
         try {
-            stream = Config.class.getResourceAsStream(resourceName);//note that each / is a directory down in the "jar tree" been the jar the root of the tree
+            stream = Config.class.getResourceAsStream(File.separatorChar + resourceName);
             if(stream == null) {
                 throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
             }
