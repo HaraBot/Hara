@@ -2,6 +2,7 @@ package ml.jammehcow;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
+import org.slf4j.Logger;
 
 import java.io.*;
 
@@ -11,7 +12,7 @@ import java.io.*;
  */
 
 public class ConfigWrapper {
-    //private final int CURRENT_REV = 1;
+    private static final int CURRENT_REV = 1;
 
     public static Config getConfig() {
         @SuppressWarnings("unchecked")
@@ -36,9 +37,7 @@ public class ConfigWrapper {
             Config object = reader.read(Config.class);
             results = object;
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (YamlException e) {
+        } catch (FileNotFoundException | YamlException e) {
             e.printStackTrace();
         }
 
