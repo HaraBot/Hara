@@ -1,12 +1,16 @@
 package ml.jammehcow;
 
+import ml.jammehcow.Config.Config;
+import ml.jammehcow.LuaEnvironment.Plugin.PluginLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
 
-import static ml.jammehcow.ConfigWrapper.getConfig;
+import java.util.Arrays;
+
+import static ml.jammehcow.Config.ConfigWrapper.getConfig;
 
 /**
  * Author: jammehcow.
@@ -16,21 +20,22 @@ import static ml.jammehcow.ConfigWrapper.getConfig;
 public class Main {
     // Sets logger to SLF4J with logback
     public static final Logger logger  = LoggerFactory.getLogger(Main.class);
-    // Grab that config!
-    public static Config config        = getConfig();
+    private static Config config       = getConfig();
+    private static final double REV    = 1.0;
 
-    public static final double REV     = 1.0;
-
-    // Will replace with config values
     private static final String prefix = config.prefix;
 
 
     public static void main(String[] args) throws DiscordException {
         logger.info("Starting Hara v" + REV);
-        getClient();
+        if (!Arrays.asList(args).contains("noclient")) {
+            getClient();
+        }
+
+        PluginLoader.loadAllPlugins();
     }
 
-    public static IDiscordClient getClient() throws DiscordException {
+    private static IDiscordClient getClient() throws DiscordException {
         ClientBuilder clientBuilder = new ClientBuilder();
         clientBuilder.withToken(config.token);
 
