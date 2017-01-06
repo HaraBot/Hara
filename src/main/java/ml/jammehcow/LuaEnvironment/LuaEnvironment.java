@@ -1,6 +1,7 @@
 package ml.jammehcow.LuaEnvironment;
 
 import ml.jammehcow.LuaEnvironment.Plugin.PluginLoader;
+import ml.jammehcow.Main;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.compiler.LuaC;
 import org.luaj.vm2.lib.jse.JsePlatform;
@@ -15,7 +16,11 @@ public class LuaEnvironment {
 
     public static void loadEnv() {
         // Crack the good stuff Dennis.
-        globals = JsePlatform.standardGlobals();
+        if (Main.debug) {
+            globals = JsePlatform.debugGlobals();
+        } else {
+            globals = JsePlatform.standardGlobals();
+        }
 
         LuaC.install(globals);
         globals.compiler = LuaC.instance;

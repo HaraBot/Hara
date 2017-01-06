@@ -9,6 +9,7 @@ import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.util.DiscordException;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static ml.jammehcow.Config.ConfigWrapper.getConfig;
 
@@ -25,12 +26,16 @@ public class Main {
 
     private static final String prefix = config.prefix;
 
+    public static boolean debug = false;
+
 
     public static void main(String[] args) throws DiscordException {
         logger.info("Starting Hara v" + REV);
-        if (!Arrays.asList(args).contains("noclient")) {
-            getClient();
-        }
+
+        List<String> argsList = Arrays.asList(args);
+
+        if (argsList.contains("noclient")) { getClient(); }
+        if (argsList.contains("v")) { debug = true; }
 
         PluginLoader.loadAllPlugins();
     }
