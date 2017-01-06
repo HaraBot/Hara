@@ -22,6 +22,7 @@ java -jar Hara.jar (optional args)
 | Argument | Description |
 | -------- | ----------- |
 | -v       | Enables debug verbose |
+| noclient | Stops the bot connecting to Discord |
 
 ## Lua plugins
 
