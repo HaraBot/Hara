@@ -1,10 +1,12 @@
-package ml.jammehcow;
+package ml.jammehcow.Config;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
-import org.slf4j.Logger;
+import ml.jammehcow.Main;
 
 import java.io.*;
+
+import static ml.jammehcow.Main.logger;
 
 /**
  * Author: jammehcow.
@@ -15,11 +17,11 @@ public class ConfigWrapper {
     private static final int CURRENT_REV = 1;
 
     public static Config getConfig() {
-        @SuppressWarnings("unchecked")
         Config results = null;
 
         try {
             File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator +"config.yml");
+            logger.info(cfgFile.toString());
 
             if (!cfgFile.exists()) {
                 InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
@@ -33,6 +35,7 @@ public class ConfigWrapper {
                 }
             }
 
+            // TODO: fix this
             YamlReader reader = new YamlReader(new FileReader("config.yml"));
             Config object = reader.read(Config.class);
             results = object;
@@ -49,7 +52,7 @@ public class ConfigWrapper {
         OutputStream resStreamOut = null;
         String jarFolder;
         try {
-            stream = Config.class.getResourceAsStream(File.separatorChar + resourceName);
+            stream = Main.class.getResourceAsStream(resourceName);
             if(stream == null) {
                 throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
             }
@@ -57,7 +60,7 @@ public class ConfigWrapper {
             int readBytes;
             byte[] buffer = new byte[4096];
             jarFolder = new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
-            resStreamOut = new FileOutputStream(jarFolder + resourceName);
+            resStreamOut = new FileOutputStream(jarFolder + File.separator + resourceName);
             while ((readBytes = stream.read(buffer)) > 0) {
                 resStreamOut.write(buffer, 0, readBytes);
             }

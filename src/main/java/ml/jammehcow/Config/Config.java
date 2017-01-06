@@ -1,4 +1,4 @@
-package ml.jammehcow;
+package ml.jammehcow.Config;
 
 /**
  * Author: jammehcow.

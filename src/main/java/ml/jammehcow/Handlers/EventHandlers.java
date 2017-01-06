@@ -1,4 +1,4 @@
-package ml.jammehcow;
+package ml.jammehcow.Handlers;
 
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.MessageReceivedEvent;
