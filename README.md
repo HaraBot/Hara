@@ -42,22 +42,22 @@ Hera itself doesn't have commands directly written into it. Instead plugins are 
 
 Primitive and likely to change example:
 ```lua
-bot.plugin(function(instance)
-    instance.enablePlugin(function()
-        bot.log("info", instance:getDescription():getName() .. " has been enabled!")
-    end)
-    
-    instance.disablePlugin(function()
-        bot.log("info", instance:getDescription():getName() .. " has been disabled! See you later.")
-    end)
-    
-    instance.registerCommand("whois", "hello [name]", function(m, args)
-        if args[1] == nil then
-            -- <@name> is a mention; just as if you @ mentioned someone in chat.
-            m.channel:sendMessage("Hello there <@" .. args[1] .. ">")
-        else
-            m.channel:sendMessage("Hello <@" .. m.author.name .. ">")
-        end
-    end)
+bot.enablePlugin(function()
+    -- Called when this plugin is loaded.
+    bot.log("info", bot:getDescription():getName() .. " has been enabled!")
+end)
+
+bot.disablePlugin(function()
+    -- Called when the plugin is unloaded via shut down or internal disableAll() is called.
+    bot.log("info", bot:getDescription():getName() .. " has been disabled! See you later.")
+end)
+
+bot.registerCommand("whois", "hello [name]", function(m, args)
+    if args[1] == nil then
+        -- <@name> is a mention; just as if you @ mentioned someone in chat.
+        m.channel:sendMessage("Hello there <@" .. args[1] .. ">")
+    else
+        m.channel:sendMessage("Hello <@" .. m.author.name .. ">")
+    end
 end)
 ```
