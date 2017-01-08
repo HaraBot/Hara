@@ -36,9 +36,7 @@ public class PluginHandler {
     }
 
     public static void callPlugin(Plugin plugin) {
-        if (plugin.isEnabled()) {
-            plugin.getChunk().call();
-        }
+        if (plugin.isEnabled()) plugin.getChunk().call();
     }
 
     public static void reloadAllPlugins() {
