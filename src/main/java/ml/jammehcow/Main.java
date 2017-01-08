@@ -35,7 +35,7 @@ public class Main {
         List<String> argsList = Arrays.asList(args);
 
         if (!argsList.contains("noclient")) { getClient(); }
-        if (argsList.contains("v")) { debug = true; }
+        if (argsList.contains("debug")) { debug = true; }
 
         PluginLoader.loadAllPlugins();
     }

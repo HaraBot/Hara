@@ -21,14 +21,20 @@ Pre-requisites:
 Hara can be run using the following command (in the unzipped directory):
 
 ```
-java -jar Hara.jar (optional args)
+java -jar Hara.jar (optional args - see below)
 ```
 
 #### Command line args
 
+The example below shows an instance without a connection to Discord and logging debug messages (Java & Lua).
+ 
+```
+java -jar Hara.jar debug noclient
+```
+
 | Argument | Description |
 | -------- | ----------- |
-| v        | Enables debug verbose |
+| debug    | Enables debug verbose |
 | noclient | Stops the bot connecting to Discord |
 
 ## Lua plugins
