@@ -15,12 +15,7 @@ public class LuaEnvironment {
     static Globals globals;
 
     public static void loadEnv() {
-        // Crack the good stuff Dennis.
-        if (Main.debug) {
-            globals = JsePlatform.debugGlobals();
-        } else {
-            globals = JsePlatform.standardGlobals();
-        }
+        globals = (Main.debug) ? JsePlatform.debugGlobals() : JsePlatform.standardGlobals();
 
         LuaC.install(globals);
         globals.compiler = LuaC.instance;
