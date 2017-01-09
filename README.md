@@ -59,7 +59,7 @@ bot.disablePlugin(function()
 end)
 
 bot.registerCommand("hello", "hello [name]", function(m, args)
-    if args[1] == nil then
+    if args[1] ~= nil then
         -- <@name> is a mention; just as if you @ mentioned someone in chat.
         m.channel:sendMessage("Hello there <@" .. args[1] .. ">")
     else
