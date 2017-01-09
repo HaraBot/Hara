@@ -58,7 +58,7 @@ bot.disablePlugin(function()
     bot.log("info", bot:getDescription():getName() .. " has been disabled! See you later.")
 end)
 
-bot.registerCommand("whois", "hello [name]", function(m, args)
+bot.registerCommand("hello", "hello [name]", function(m, args)
     if args[1] == nil then
         -- <@name> is a mention; just as if you @ mentioned someone in chat.
         m.channel:sendMessage("Hello there <@" .. args[1] .. ">")
