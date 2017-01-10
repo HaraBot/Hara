@@ -1,11 +1,12 @@
 package ml.jammehcow;
 
 import ml.jammehcow.Config.Config;
-import ml.jammehcow.LuaEnvironment.Plugin.PluginLoader;
+import ml.jammehcow.Handlers.EventHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
+import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
 
 import java.util.Arrays;
@@ -24,9 +25,10 @@ public class Main {
     private static Config config       = getConfig();
     private static final double REV    = 1.0;
 
-    private static final String prefix = config.prefix;
+    public static final String prefix = config.prefix;
 
     public static boolean debug = false;
+    public static IDiscordClient client;
 
 
     public static void main(String[] args) throws DiscordException {
@@ -34,7 +36,13 @@ public class Main {
 
         List<String> argsList = Arrays.asList(args);
 
-        if (!argsList.contains("noclient")) { getClient(); }
+        if (config.token.equals("your_discord_bot_token")) throw new DiscordException("Your bot token is the default token. You need to change the \"token\" field to your bot token in your config.yml");
+
+        if (!argsList.contains("noclient")) {
+            client = getClient();
+            EventDispatcher dispatcher = client.getDispatcher();
+            dispatcher.registerListener(new EventHandlers());
+        }
         if (argsList.contains("debug")) { debug = true; }
 
         //LuaEnvironment.init();
