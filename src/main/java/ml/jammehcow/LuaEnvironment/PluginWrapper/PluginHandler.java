@@ -28,7 +28,7 @@ public class PluginHandler {
                     if (c.exists() && m.exists()) {
                         pluginsReturned.add(c);
                     } else {
-                        logger.warn(f.getName() + " was found in your plugins folder, but doesn't contain (either) a main.lua or conf.yml. It isn't be loaded until that's fixed.");
+                        logger.warn(f.getName() + " was found in your plugins folder, but doesn't contain (either) a main.lua or conf.yml. It won't be loaded until that's fixed.");
                     }
                 }
             }
