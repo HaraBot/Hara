@@ -37,7 +37,7 @@ public class Main {
         if (!argsList.contains("noclient")) { getClient(); }
         if (argsList.contains("debug")) { debug = true; }
 
-        PluginLoader.loadAllPlugins();
+        //LuaEnvironment.init();
     }
 
     private static IDiscordClient getClient() throws DiscordException {

@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.Plugin;
+package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
@@ -12,12 +12,12 @@ import static ml.jammehcow.Main.logger;
  * Date: 6/01/17.
  */
 
-public class PluginWrapper extends LuaTable {
-    public PluginWrapper(Plugin plugin) {
+public class PluginBotWrapper extends LuaTable {
+    public PluginBotWrapper(Plugin plugin) {
         set("registerCommand", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                PluginHandler.registerCommand(plugin, new PluginCommand(args.tojstring(1), args.tojstring(2), args.checkfunction(4)));
+                plugin.addCmd(new PluginCommand(plugin, args.tojstring(1), args.tojstring(2), args.checkfunction(4)));
                 return LuaValue.NIL;
             }
         });
@@ -26,14 +26,21 @@ public class PluginWrapper extends LuaTable {
         set("log", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                if (args.tojstring(1).equals("info")) {
-                    logger.info(args.tojstring(2));
-                } else if (args.tojstring(1).equals("warn")) {
-                    logger.warn(args.tojstring(2));
-                } else if (args.tojstring(1).equals("error")) {
-                    logger.error(args.tojstring(2));
-                } else if (args.tojstring(1).equals("debug")) {
-                    logger.debug(args.tojstring(2));
+                switch (args.tojstring(1).toLowerCase()) {
+                    case "info":
+                        logger.info(args.tojstring(2));
+                        break;
+                    case "warn":
+                        logger.warn(args.tojstring(2));
+                        break;
+                    case "error":
+                        logger.error(args.tojstring(2));
+                        break;
+                    case "debug":
+                        logger.debug(args.tojstring(2));
+                        break;
+                    default:
+                        break;
                 }
                 return LuaValue.NIL;
             }

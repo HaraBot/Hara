@@ -1,9 +1,9 @@
-package ml.jammehcow.LuaEnvironment.Plugin;
+package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import static ml.jammehcow.LuaEnvironment.Plugin.Plugin.loadedPlugins;
+import static ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin.loadedPlugins;
 import static ml.jammehcow.Main.logger;
 
 /**
@@ -21,13 +21,15 @@ public class PluginHandler {
             pluginsDir.mkdir();
         } else {
             File[] dirs = pluginsDir.listFiles(File::isDirectory);
-            for (File f : dirs) {
-                File m =  new File(f.getAbsoluteFile() + File.separator + "main.lua");
-                File c =  new File(f.getAbsoluteFile() + File.separator + "conf.yml");
-                if (c.exists() && m.exists()) {
-                    pluginsReturned.add(c);
-                } else {
-                    logger.warn(f.getName() + " was found in your plugins folder, but doesn't contain (either) a main.lua or conf.yml. It isn't be loaded until that's fixed.");
+            if (dirs != null) {
+                for (File f : dirs) {
+                    File m =  new File(f.getAbsoluteFile() + File.separator + "main.lua");
+                    File c =  new File(f.getAbsoluteFile() + File.separator + "conf.yml");
+                    if (c.exists() && m.exists()) {
+                        pluginsReturned.add(c);
+                    } else {
+                        logger.warn(f.getName() + " was found in your plugins folder, but doesn't contain (either) a main.lua or conf.yml. It isn't be loaded until that's fixed.");
+                    }
                 }
             }
         }
@@ -46,10 +48,7 @@ public class PluginHandler {
     }
 
     public static void enableAll() {
-        for (Plugin p : loadedPlugins) {
-            // This sets Plugin.enabled to true anc calls the chunk provided.
-            p.enable();
-        }
+        for (Plugin p : loadedPlugins) p.enable();
     }
 
     public static void disableAll() {
@@ -62,9 +61,5 @@ public class PluginHandler {
 
         // Ensure that the whole ArrayList is cleared.
         loadedPlugins.clear();
-    }
-
-    public static void registerCommand(Plugin plugin, PluginCommand pluginCommand) {
-        plugin.addCmd(pluginCommand);
     }
 }

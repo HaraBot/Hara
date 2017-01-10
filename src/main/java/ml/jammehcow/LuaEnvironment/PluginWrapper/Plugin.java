@@ -1,12 +1,13 @@
-package ml.jammehcow.LuaEnvironment.Plugin;
+package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
+import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,6 +17,7 @@ import java.util.Map;
 
 public class Plugin {
     static ArrayList<Plugin> loadedPlugins = new ArrayList<>();
+    static HashMap<Plugin, ArrayList<PluginCommand>> loadedCommands = new HashMap<>();
 
     private String name;
     private PluginDescriptor description;
@@ -25,23 +27,25 @@ public class Plugin {
     private boolean enabled;
     private ArrayList<PluginCommand> commands = new ArrayList<>();
     private File pluginFolder;
-    private PluginWrapper wrapper;
+    private PluginBotWrapper wrapper;
     private LuaFunction enableCB;
     private LuaFunction disableCB;
 
-    private Globals globals = JsePlatform.standardGlobals();
+    private Globals globals;
 
     public Plugin(String name, File file, Map config) {
-        this.chunk = globals.loadfile(file.getAbsolutePath());
         this.name = name;
         this.plugin = file;
         this.enabled = false;
 
+        this.globals = LuaEnvironment.globals;
         this.pluginFolder = file.getParentFile().getAbsoluteFile();
-
 
         this.config = config;
         this.description = new PluginDescriptor(this.name, (String)this.config.get("version"), (String)this.config.get("description"), (String)this.config.get("author"));
+
+        this.globals.set("bot", new PluginBotWrapper(this));
+        this.chunk = this.globals.loadfile(file.getAbsolutePath());
 
         loadedPlugins.add(this);
     }
@@ -53,10 +57,8 @@ public class Plugin {
     public void disable() { this.enabled = false; }
 
     public void enable() {
-        this.wrapper = new PluginWrapper(this);
+        this.wrapper = new PluginBotWrapper(this);
         this.enabled = true;
-
-        this.globals.set("bot", new PluginWrapper(this));
 
         PluginHandler.callPlugin(this);
     }

@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.Plugin;
+package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 /**
  * Author: jammehcow.

@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.Plugin;
+package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static ml.jammehcow.LuaEnvironment.Plugin.Plugin.loadedPlugins;
+import static ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin.loadedPlugins;
 import static ml.jammehcow.Main.logger;
 
 /**
@@ -21,8 +21,9 @@ public class PluginLoader {
     private static void loadPlugin(File config, File main) {
         try {
             YamlReader c = new YamlReader(new FileReader(config));
-            Object object = c.read();
-            Map configMap = (Map)object;
+            Map configMap = (Map)c.read();
+
+            // TODO: check that config is complete.
 
             String name = (String)configMap.get("name");
 
