@@ -71,5 +71,7 @@ public class Plugin {
 
     public void addCmd(PluginCommand cmd) { commands.add(cmd); }
 
+    public String getName() { return this.name; }
+
     public ArrayList<PluginCommand> getCommands() { return commands; }
 }

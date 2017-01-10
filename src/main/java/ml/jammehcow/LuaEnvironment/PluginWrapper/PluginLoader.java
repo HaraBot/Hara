@@ -38,7 +38,7 @@ public class PluginLoader {
         ArrayList<File> available = PluginHandler.getAvailablePlugins();
         if (!available.isEmpty()) {
             for (File c : available) {
-                File f = new File(c.getParentFile().getAbsolutePath() + File.separator + "conf.yml");
+                File f = new File(c.getParentFile().getAbsolutePath() + File.separator + "main.lua");
                 loadPlugin(c, f);
             }
         } else {
