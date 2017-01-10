@@ -19,9 +19,8 @@ public class LuaEnvironment {
         PluginLoader.loadAllPlugins();
     }
 
-    public static void loadEnv() {
+    private static void loadEnv() {
         globals = (Main.debug) ? JsePlatform.debugGlobals() : JsePlatform.standardGlobals();
-
         LuaC.install(globals);
         globals.compiler = LuaC.instance;
     }
