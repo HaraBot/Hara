@@ -20,13 +20,13 @@ public class ConfigWrapper {
         Config results = null;
 
         try {
-            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator +"config.yml");
+            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
             logger.info(cfgFile.toString());
 
             if (!cfgFile.exists()) {
                 InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
 
-                if (resource == null) {
+                if (resource != null) {
                     try {
                         exportResource("config.yml");
                     } catch (Exception e) {
@@ -67,8 +67,8 @@ public class ConfigWrapper {
         } catch (Exception ex) {
             throw ex;
         } finally {
-            stream.close();
-            resStreamOut.close();
+            if (stream != null) stream.close();
+            if (resStreamOut != null) resStreamOut.close();
         }
 
         return jarFolder + resourceName;
