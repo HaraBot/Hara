@@ -116,13 +116,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Discord4J Addon - Commands4J -->
-        <dependency>
-            <groupId>com.github.Discord4J-Addons</groupId>
-            <artifactId>Commands4J</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-
         <!-- LuaJ -->
         <dependency>
             <groupId>org.luaj</groupId>
