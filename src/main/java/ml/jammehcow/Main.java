@@ -2,6 +2,7 @@ package ml.jammehcow;
 
 import ml.jammehcow.Config.Config;
 import ml.jammehcow.Handlers.EventHandlers;
+import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sx.blah.discord.api.ClientBuilder;
@@ -45,7 +46,7 @@ public class Main {
         }
         if (argsList.contains("debug")) { debug = true; }
 
-        //LuaEnvironment.init();
+        LuaEnvironment.init();
     }
 
     private static IDiscordClient getClient() throws DiscordException {
