@@ -23,12 +23,14 @@ public class PluginLoader {
             YamlReader c = new YamlReader(new FileReader(config));
             Map configMap = (Map)c.read();
 
-            // TODO: check that config is complete.
+            if (!checkConfig(configMap)) {
+                throw new YamlException("Your conf.yml is missing some keys. Have a look at the example https://github.com/jammehcow/Hara-Example-Plugin/blob/master/Example-Plugin/conf.yml and see what you're missing from the \"Required keys\" section.");
+            } else {
+                String name = (String)configMap.get("name");
 
-            String name = (String)configMap.get("name");
-
-            loadedPlugins.add(new Plugin(name, main, configMap));
-            logger.info("Loaded plugin " + name);
+                loadedPlugins.add(new Plugin(name, main, configMap));
+                logger.info("Loaded plugin " + name);
+            }
         } catch (FileNotFoundException | YamlException e) {
             e.printStackTrace();
         }
@@ -46,5 +48,9 @@ public class PluginLoader {
         }
 
         PluginHandler.enableAll();
+    }
+
+    private static boolean checkConfig(Map cfg) {
+        return cfg.containsKey("name") && cfg.containsKey("author") && cfg.containsKey("description") && cfg.containsKey("version");
     }
 }
