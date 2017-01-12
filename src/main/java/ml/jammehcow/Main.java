@@ -38,13 +38,13 @@ public class Main {
         List<String> argsList = Arrays.asList(args);
 
         if (config.token.equals("your_discord_bot_token")) throw new DiscordException("Your bot token is the default token. You need to change the \"token\" field to your bot token in your config.yml");
+        if (argsList.contains("debug")) { debug = true; }
 
         if (!argsList.contains("noclient")) {
             client = getClient();
             EventDispatcher dispatcher = client.getDispatcher();
             dispatcher.registerListener(new EventHandlers());
         }
-        if (argsList.contains("debug")) { debug = true; }
 
         LuaEnvironment.init();
     }
