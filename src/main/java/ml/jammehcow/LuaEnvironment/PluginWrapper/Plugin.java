@@ -46,8 +46,6 @@ public class Plugin {
 
         this.globals.set("bot", new PluginBotWrapper(this));
         this.chunk = this.globals.loadfile(file.getAbsolutePath());
-
-        loadedPlugins.add(this);
     }
 
     public PluginDescriptor getDescription() { return this.description; }
