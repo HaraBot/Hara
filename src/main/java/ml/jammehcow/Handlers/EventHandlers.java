@@ -85,7 +85,7 @@ public class EventHandlers {
 
                     if (!pluginRef.getCommands().isEmpty()) {
                         for (PluginCommand c : pluginRef.getCommands()) {
-                            embed.appendField("**" + Main.prefix + c.getCommand() + "**", "Usage:  ```" + c.getUsage() + "``` ", true);
+                            embed.appendField("**" + Main.prefix + c.getCommand() + "**", "**Usage:** " + c.getUsage(), true);
                         }
                     } else {
                         embed.appendField("There are no commands!", "Does this plugin have any commands?", false);
