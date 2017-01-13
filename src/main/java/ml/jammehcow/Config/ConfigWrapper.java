@@ -21,7 +21,6 @@ public class ConfigWrapper {
 
         try {
             File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
-            logger.info(cfgFile.toString());
 
             if (!cfgFile.exists()) {
                 InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
@@ -35,7 +34,6 @@ public class ConfigWrapper {
                 }
             }
 
-            // TODO: fix this
             YamlReader reader = new YamlReader(new FileReader("config.yml"));
             Config object = reader.read(Config.class);
             results = object;
