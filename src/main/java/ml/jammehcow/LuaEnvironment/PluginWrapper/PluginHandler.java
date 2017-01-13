@@ -3,7 +3,7 @@ package ml.jammehcow.LuaEnvironment.PluginWrapper;
 import java.io.File;
 import java.util.ArrayList;
 
-import static ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin.loadedPlugins;
+import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPlugins;
 import static ml.jammehcow.Main.logger;
 
 /**
@@ -37,10 +37,6 @@ public class PluginHandler {
         return pluginsReturned;
     }
 
-    public static void callPlugin(Plugin plugin) {
-        if (plugin.isEnabled()) plugin.getChunk().call();
-    }
-
     public static void reloadAllPlugins() {
         disableAll();
         logger.info("Reloading all plugins");
@@ -48,18 +44,15 @@ public class PluginHandler {
     }
 
     public static void enableAll() {
-        for (Plugin p : loadedPlugins) p.enable();
+        for (Plugin p : getLoadedPlugins()) p.enable();
     }
 
     public static void disableAll() {
-        for (Plugin p : loadedPlugins) {
+        for (Plugin p : getLoadedPlugins()) {
             // Disable each plugin in the list and remove it from the array.
             // Disabling is not like enabling. It removes it from memory, there is no setting self.enabled to false unless done single.
             p.disable();
-            loadedPlugins.remove(p);
+            PluginLoader.removePlugin(p);
         }
-
-        // Ensure that the whole ArrayList is cleared.
-        loadedPlugins.clear();
     }
 }

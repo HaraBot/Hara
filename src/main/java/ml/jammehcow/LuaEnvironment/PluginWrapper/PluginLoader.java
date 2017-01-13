@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin.loadedPlugins;
 import static ml.jammehcow.Main.logger;
 
 /**
@@ -18,6 +17,8 @@ import static ml.jammehcow.Main.logger;
  */
 
 public class PluginLoader {
+    private static ArrayList<Plugin> loadedPlugins = new ArrayList<>();
+
     private static void loadPlugin(File config, File main) {
         try {
             YamlReader c = new YamlReader(new FileReader(config));
@@ -35,6 +36,10 @@ public class PluginLoader {
             e.printStackTrace();
         }
     }
+
+    public static ArrayList<Plugin> getLoadedPlugins() { return loadedPlugins; }
+
+    public static void removePlugin(Plugin p) { loadedPlugins.remove(p); }
 
     public static void loadAllPlugins() {
         ArrayList<File> available = PluginHandler.getAvailablePlugins();

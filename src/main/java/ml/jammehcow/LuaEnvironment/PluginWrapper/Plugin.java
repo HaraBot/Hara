@@ -4,10 +4,10 @@ import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,18 +16,14 @@ import java.util.Map;
  */
 
 public class Plugin {
-    static ArrayList<Plugin> loadedPlugins = new ArrayList<>();
-    static HashMap<Plugin, ArrayList<PluginCommand>> loadedCommands = new HashMap<>();
-
     private String name;
     private PluginDescriptor description;
     private File plugin;
+    private File pluginFolder;
     private Map config;
     private LuaValue chunk;
     private boolean enabled;
     private ArrayList<PluginCommand> commands = new ArrayList<>();
-    private File pluginFolder;
-    private PluginBotWrapper wrapper;
     private LuaFunction enableCB;
     private LuaFunction disableCB;
 
@@ -52,24 +48,26 @@ public class Plugin {
 
     public LuaValue getChunk() { return this.chunk; }
 
-    public void disable() { this.enabled = false; }
-
-    public void enable() {
-        this.wrapper = new PluginBotWrapper(this);
-        this.enabled = true;
-
-        PluginHandler.callPlugin(this);
+    void disable() {
+        this.enabled = false;
+        this.disableCB.call(CoerceJavaToLua.coerce(this));
     }
 
-    public void setEnableCB(LuaFunction cb) { this.enableCB = cb; }
+    void enable() {
+        this.enabled = true;
+        this.chunk.call();
+        this.enableCB.call(CoerceJavaToLua.coerce(this));
+    }
 
-    public void setDisableCB(LuaFunction cb) { this.disableCB = cb; }
+    void setEnableCB(LuaFunction cb) { this.enableCB = cb; }
+
+    void setDisableCB(LuaFunction cb) { this.disableCB = cb; }
 
     public boolean isEnabled() { return this.enabled; }
 
-    public void addCmd(PluginCommand cmd) { commands.add(cmd); }
-
-    public String getName() { return this.name; }
+    void addCmd(PluginCommand cmd) { commands.add(cmd); }
 
     public ArrayList<PluginCommand> getCommands() { return commands; }
+
+    public String getName() { return this.name; }
 }
