@@ -1,14 +1,13 @@
 package ml.jammehcow.Handlers;
 
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginDescriptor;
 import ml.jammehcow.Main;
 import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.api.internal.json.event.ReactionEventResponse;
-import sx.blah.discord.api.internal.json.objects.ReactionEmojiObject;
-import sx.blah.discord.api.internal.json.objects.ReactionUserObject;
 import sx.blah.discord.handle.impl.events.MessageReceivedEvent;
 import sx.blah.discord.handle.impl.events.ReactionAddEvent;
 import sx.blah.discord.handle.impl.events.ReadyEvent;
-import sx.blah.discord.handle.impl.obj.Reaction;
 import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.EmbedBuilder;
@@ -17,9 +16,8 @@ import sx.blah.discord.util.RateLimitException;
 
 import java.awt.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
-import static ml.jammehcow.Main.logger;
+import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPlugins;
 
 /**
  * Author: jammehcow.
@@ -68,6 +66,10 @@ public class EventHandlers {
                 int msgCount = m.getChannel().getMessages().size();
                 m.getChannel().getMessages().bulkDelete(m.getChannel().getMessages());
                 m.getChannel().sendMessage((msgCount > 100) ? "You owe me for clearing " + Integer.toString(msgCount) + " messages. \nA beer or two sounds good." : "I've just cleared " + Integer.toString(msgCount) + " messages. How fun!");
+            } else {
+                if (!CommandPluginHandler.parseCommand(m)) {
+                    m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, that's not a valid command!");
+                }
             }
         }
     }

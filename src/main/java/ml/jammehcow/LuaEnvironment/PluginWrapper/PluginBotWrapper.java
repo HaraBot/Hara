@@ -17,7 +17,7 @@ class PluginBotWrapper extends LuaTable {
         set("registerCommand", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                plugin.addCmd(new PluginCommand(plugin, args.tojstring(1), args.tojstring(2), args.checkfunction(4)));
+                plugin.addCmd(new PluginCommand(plugin, args.tojstring(1), args.tojstring(2), args.checkfunction(3)));
                 return LuaValue.NIL;
             }
         });
