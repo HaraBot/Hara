@@ -18,6 +18,7 @@ import java.awt.*;
 import java.time.LocalDateTime;
 
 import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPlugins;
+import static ml.jammehcow.Main.client;
 
 /**
  * Author: jammehcow.
@@ -33,36 +34,71 @@ public class EventHandlers {
     @EventSubscriber
     public void onMessageReceivedEvent(MessageReceivedEvent event) throws RateLimitException, DiscordException, MissingPermissionsException {
         IMessage m = event.getMessage();
-        String content = m.getContent();
+        String content = m.getContent().trim() + " ";
 
         if (content.startsWith(Main.prefix)) {
-            if (content.startsWith(Main.prefix + "plugin ")) {
-                String args = content.replace(Main.prefix + "plugin ", "");
-
+            if (content.startsWith(Main.prefix + "plugins ")) {
                 EmbedBuilder embed = new EmbedBuilder()
-                        .withTitle("Plugin: " + args)
-                        .withDescription("This plugin is pretty cool aye?!\nThis is a description of this plugin.")
-                        .withAuthorIcon("https://github.com/jammehcow.png")
-                        .withAuthorName("jammehcow").withColor(Color.RED)
                         .withFooterText("Hara made with \u2764 and \uD83D\uDD52 by James Upjohn")
-                        .withAuthorUrl("https://github.com/jammehcow/")
-                        .withTimestamp(LocalDateTime.now());
+                        .withTimestamp(LocalDateTime.now())
+                        .withAuthorName(client.getOurUser().getName())
+                        .withAuthorIcon(client.getOurUser().getAvatarURL())
+                        .withColor(Color.GREEN);
 
-                // Dummy list
-                ArrayList<String> commands = new ArrayList<>();
-                commands.add("cool_command_1");
-                commands.add("cool_command_2");
-                commands.add("cool_command_3");
-
-                for (String s : commands) {
-                    embed.appendField(Main.prefix + "**" + s + "**", "This is a description of " + s, true);
+                if (!getLoadedPlugins().isEmpty()) {
+                    for (Plugin p : getLoadedPlugins()) {
+                        embed.appendField("**" + p.getName() + "**", p.getDescription().getDescription(), true);
+                    }
+                } else {
+                    embed.appendField("No plugins to show", "There are no plugins loaded or enabled on this bot", false);
                 }
 
-                m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's that description you wanted!", embed.build(), false);
-            } else if (content.startsWith(Main.prefix + "kys")) {
-                Main.client.logout();
+                m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's a list of installed plugins.", embed.build(), false);
+            } else if (content.startsWith(Main.prefix + "plugin ")) {
+                String args = content.replace(Main.prefix + "plugin ", "").trim();
+
+                Plugin pluginRef = null;
+                for (Plugin p : getLoadedPlugins()) {
+                    if (p.getName().equalsIgnoreCase(args)) {
+                        pluginRef = p;
+                        break;
+                    }
+                }
+
+                if (pluginRef != null) {
+                    EmbedBuilder embed = new EmbedBuilder()
+                            .withTitle("Plugin: " + pluginRef.getName())
+                            .withDescription(pluginRef.getDescription().getDescription())
+                            .withFooterText("Hara made with \u2764 and \uD83D\uDD52 by James Upjohn")
+                            .withTimestamp(LocalDateTime.now())
+                            .withAuthorName(pluginRef.getDescription().getAuthor())
+                            .withColor(Color.RED);
+
+                    PluginDescriptor description = pluginRef.getDescription();
+
+                    if (description.getAuthor().startsWith("github/")) {
+                        embed.withAuthorName(description.getAuthor().replace("github/", ""))
+                                .withAuthorUrl("https://github.com/" + description.getAuthor().replace("github/", "") + "/")
+                                .withAuthorIcon("https://github.com/" + description.getAuthor().replace("github/", "") + ".png")
+                                .withColor(Color.GREEN);
+                    }
+
+                    if (!pluginRef.getCommands().isEmpty()) {
+                        for (PluginCommand c : pluginRef.getCommands()) {
+                            embed.appendField("**" + Main.prefix + c.getCommand() + "**", "Usage:  ```" + c.getUsage() + "``` ", true);
+                        }
+                    } else {
+                        embed.appendField("There are no commands!", "Does this plugin have any commands?", false);
+                    }
+
+                    m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's that description you wanted!", embed.build(), false);
+                } else {
+                    m.getChannel().sendMessage("That's not a valid plugin name!");
+                }
+            } else if (content.startsWith(Main.prefix + "quit ")) {
+                client.logout();
                 System.exit(0);
-            } else if (content.startsWith(Main.prefix + "clear")) {
+            } else if (content.startsWith(Main.prefix + "clear ")) {
                 int msgCount = m.getChannel().getMessages().size();
                 m.getChannel().getMessages().bulkDelete(m.getChannel().getMessages());
                 m.getChannel().sendMessage((msgCount > 100) ? "You owe me for clearing " + Integer.toString(msgCount) + " messages. \nA beer or two sounds good." : "I've just cleared " + Integer.toString(msgCount) + " messages. How fun!");
