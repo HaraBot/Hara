@@ -1,5 +1,7 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
+import ml.jammehcow.Main;
+import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
@@ -37,5 +39,7 @@ class PluginBotWrapper extends LuaTable {
                 return LuaValue.NIL;
             }
         });
+
+        set("prefix", LuaValue.valueOf(Main.prefix));
     }
 }
