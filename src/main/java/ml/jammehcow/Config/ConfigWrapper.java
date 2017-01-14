@@ -63,7 +63,7 @@ public class ConfigWrapper {
                 resStreamOut.write(buffer, 0, readBytes);
             }
         } catch (Exception ex) {
-            throw ex;
+            ex.printStackTrace();
         } finally {
             if (stream != null) stream.close();
             if (resStreamOut != null) resStreamOut.close();
