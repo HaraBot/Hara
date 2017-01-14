@@ -48,7 +48,7 @@ public class ConfigWrapper {
     static String exportResource(String resourceName) throws Exception {
         InputStream stream = null;
         OutputStream resStreamOut = null;
-        String jarFolder;
+        String jarFolder = null;
         try {
             stream = Main.class.getResourceAsStream(resourceName);
             if(stream == null) {
