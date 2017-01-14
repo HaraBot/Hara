@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper;
+package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
@@ -12,7 +12,7 @@ import static ml.jammehcow.Main.logger;
  * Date: 11/01/17.
  */
 
-class PluginLoggingWrapper extends LuaTable {
+public class PluginLoggingWrapper extends LuaTable {
     PluginLoggingWrapper() {
         set("info", new VarArgFunction() {
             @Override

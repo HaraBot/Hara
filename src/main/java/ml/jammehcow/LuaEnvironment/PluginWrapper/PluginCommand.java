@@ -17,7 +17,7 @@ public class PluginCommand {
     private LuaValue cb;
     private Plugin plugin;
 
-    PluginCommand(Plugin plugin, String command, String usage, LuaFunction cb) {
+    public PluginCommand(Plugin plugin, String command, String usage, LuaFunction cb) {
         this.plugin = plugin;
         this.cmd = command;
         this.usage = usage;

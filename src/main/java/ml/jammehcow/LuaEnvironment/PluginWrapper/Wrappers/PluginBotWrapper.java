@@ -1,10 +1,9 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper;
+package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
 import ml.jammehcow.Main;
-import org.luaj.vm2.LuaString;
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.Varargs;
+import org.luaj.vm2.*;
 import org.luaj.vm2.lib.VarArgFunction;
 
 /**
@@ -12,7 +11,7 @@ import org.luaj.vm2.lib.VarArgFunction;
  * Date: 6/01/17.
  */
 
-class PluginBotWrapper extends LuaTable {
+public class PluginBotWrapper extends LuaTable {
     PluginBotWrapper(Plugin plugin) {
         set("log", new PluginLoggingWrapper());
 
@@ -20,6 +19,14 @@ class PluginBotWrapper extends LuaTable {
             @Override
             public Varargs invoke(Varargs args) {
                 plugin.addCmd(new PluginCommand(plugin, args.tojstring(1), args.tojstring(2), args.checkfunction(3)));
+                return LuaValue.NIL;
+            }
+        });
+
+        set("registerEvent", new VarArgFunction() {
+            @Override
+            public Varargs invoke(Varargs args) {
+                // TODO: add event handling to plugins (e.g. ReactionAddEvent)
                 return LuaValue.NIL;
             }
         });

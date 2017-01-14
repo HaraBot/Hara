@@ -1,6 +1,7 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginBotWrapper;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
@@ -59,13 +60,13 @@ public class Plugin {
         this.enableCB.call(CoerceJavaToLua.coerce(this));
     }
 
-    void setEnableCB(LuaFunction cb) { this.enableCB = cb; }
+    public void setEnableCB(LuaFunction cb) { this.enableCB = cb; }
 
-    void setDisableCB(LuaFunction cb) { this.disableCB = cb; }
+    public void setDisableCB(LuaFunction cb) { this.disableCB = cb; }
 
     public boolean isEnabled() { return this.enabled; }
 
-    void addCmd(PluginCommand cmd) { commands.add(cmd); }
+    public void addCmd(PluginCommand cmd) { commands.add(cmd); }
 
     public ArrayList<PluginCommand> getCommands() { return commands; }
 
