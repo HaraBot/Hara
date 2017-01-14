@@ -12,7 +12,7 @@ import org.luaj.vm2.lib.VarArgFunction;
  */
 
 public class PluginBotWrapper extends LuaTable {
-    PluginBotWrapper(Plugin plugin) {
+    public PluginBotWrapper(Plugin plugin) {
         set("log", new PluginLoggingWrapper());
 
         set("registerCommand", new VarArgFunction() {
