@@ -6,8 +6,6 @@ import ml.jammehcow.Main;
 
 import java.io.*;
 
-import static ml.jammehcow.Main.logger;
-
 /**
  * Author: jammehcow.
  * Date: 21/12/16.
@@ -27,7 +25,7 @@ public class ConfigWrapper {
 
                 if (resource != null) {
                     try {
-                        exportResource("config.yml");
+                        exportConfig();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -35,9 +33,7 @@ public class ConfigWrapper {
             }
 
             YamlReader reader = new YamlReader(new FileReader("config.yml"));
-            Config object = reader.read(Config.class);
-            results = object;
-
+            results = reader.read(Config.class);
         } catch (FileNotFoundException | YamlException e) {
             e.printStackTrace();
         }
@@ -45,23 +41,22 @@ public class ConfigWrapper {
         return results;
     }
 
-    static String exportResource(String resourceName) throws Exception {
+    private static String exportConfig() throws Exception {
         InputStream stream = null;
         OutputStream resStreamOut = null;
         String jarFolder = null;
+
         try {
-            stream = Main.class.getResourceAsStream(resourceName);
-            if(stream == null) {
-                throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
-            }
+            stream = Main.class.getResourceAsStream("config.yml");
+            if(stream == null) throw new Exception("Cannot get resource \"" + "config.yml" + "\" from Jar file.");
 
             int readBytes;
             byte[] buffer = new byte[4096];
+
             jarFolder = new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
-            resStreamOut = new FileOutputStream(jarFolder + File.separator + resourceName);
-            while ((readBytes = stream.read(buffer)) > 0) {
-                resStreamOut.write(buffer, 0, readBytes);
-            }
+            resStreamOut = new FileOutputStream(jarFolder + File.separator + "config.yml");
+
+            while ((readBytes = stream.read(buffer)) > 0) resStreamOut.write(buffer, 0, readBytes);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -69,6 +64,6 @@ public class ConfigWrapper {
             if (resStreamOut != null) resStreamOut.close();
         }
 
-        return jarFolder + resourceName;
+        return jarFolder + "config.yml";
     }
 }
