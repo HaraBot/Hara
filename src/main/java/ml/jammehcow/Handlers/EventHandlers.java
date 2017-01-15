@@ -76,11 +76,12 @@ public class EventHandlers {
 
                     PluginDescriptor description = pluginRef.getDescription();
 
+                    if (pluginRef.isEnabled()) embed.withColor(Color.GREEN);
+
                     if (description.getAuthor().startsWith("github/")) {
                         embed.withAuthorName(description.getAuthor().replace("github/", ""))
                                 .withAuthorUrl("https://github.com/" + description.getAuthor().replace("github/", "") + "/")
-                                .withAuthorIcon("https://github.com/" + description.getAuthor().replace("github/", "") + ".png")
-                                .withColor(Color.GREEN);
+                                .withAuthorIcon("https://github.com/" + description.getAuthor().replace("github/", "") + ".png");
                     }
 
                     if (!pluginRef.getCommands().isEmpty()) {
