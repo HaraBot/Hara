@@ -3,7 +3,9 @@ package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
 import ml.jammehcow.Main;
-import org.luaj.vm2.*;
+import org.luaj.vm2.LuaTable;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 
 /**
