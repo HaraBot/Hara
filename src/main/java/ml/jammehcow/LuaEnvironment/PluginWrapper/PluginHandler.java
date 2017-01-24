@@ -1,6 +1,9 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
+import ml.jammehcow.Main;
+
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPlugins;
@@ -15,7 +18,12 @@ public class PluginHandler {
     public static ArrayList<File> getAvailablePlugins() {
         ArrayList<File> pluginsReturned = new ArrayList<>();
 
-        File pluginsDir = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "plugins");
+        File pluginsDir = null;
+        try {
+            pluginsDir = new File(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile() + File.separator + "plugins");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         if (!pluginsDir.exists()) {
             pluginsDir.mkdir();
