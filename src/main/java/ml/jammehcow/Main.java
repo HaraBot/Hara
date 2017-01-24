@@ -26,7 +26,7 @@ public class Main {
     private static Config config       = getConfig();
     private static final double REV    = 1.0;
 
-    public static final String prefix = config.prefix;
+    public static final String prefix  = config.prefix;
 
     public static boolean debug = false;
     public static IDiscordClient client;
