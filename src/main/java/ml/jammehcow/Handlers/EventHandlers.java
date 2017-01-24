@@ -90,7 +90,7 @@ public class EventHandlers {
                         embed.appendField("There are no commands!", "Does this plugin have any commands?", false);
                     }
 
-                    m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's that description you wanted!", embed.build(), false);
+                    m.getChannel().sendMessage(null, embed.build(), false);
                 } else {
                     m.getChannel().sendMessage("That's not a valid plugin name!");
                 }
