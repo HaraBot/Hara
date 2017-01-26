@@ -11,6 +11,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static ml.jammehcow.Main.logger;
+
 /**
  * Author: jammehcow.
  * Date: 4/01/17.
@@ -66,7 +68,18 @@ public class Plugin {
 
     public boolean isEnabled() { return this.enabled; }
 
-    public void addCmd(PluginCommand cmd) { commands.add(cmd); }
+    public void addCmd(PluginCommand cmd) {
+        for (Plugin p : PluginLoader.getLoadedPlugins()) {
+            for (PluginCommand c : p.getCommands()) {
+                if (c.getCommand().equals(cmd.getCommand())) {
+                    logger.warn("Plugin " + this.getName() + " is requesting to register command " + cmd.getCommand() +
+                                ", but plugin " + p.getName() + " owns it. ");
+                    return;
+                }
+            }
+        }
+        commands.add(cmd);
+    }
 
     public ArrayList<PluginCommand> getCommands() { return commands; }
 
