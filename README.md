@@ -5,10 +5,13 @@
 Hara (the Japanese word for "original") is a small and highly extensible discord bot through the Lua scripting language. It's young, and therefore prone to crashes.
 If something happens that wasn't supposed to, check to see if someone else has reported it as an issue or report it yourself with the log.
 
-## It would be cool to have...
+## Upcoming features...
 
 - [ ] A functioning Lua API heh
-- [ ] youtube-dl support (with a Lua API like bot.ytdl.* to match)
+- [ ] youtube-dl & audio support (with a Lua table like bot.ytdl.* to match)
+- [ ] SQL support 
+- [ ] Support for [all Discord4J events](https://jitpack.io/com/github/austinv11/Discord4j/2.7.0/javadoc/)
+- [ ] Plugin dependencies
 
 ## Installation
 
