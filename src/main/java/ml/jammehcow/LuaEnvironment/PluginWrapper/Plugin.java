@@ -37,7 +37,8 @@ public class Plugin {
         this.plugin = file;
         this.enabled = false;
 
-        this.globals = LuaEnvironment.globals;
+        // Globals need to be set on a plugin to plugin basis. Resolves #1
+        this.globals = LuaEnvironment.getEnv();
         this.pluginFolder = file.getParentFile().getAbsoluteFile();
 
         this.config = config;
@@ -45,6 +46,8 @@ public class Plugin {
 
         this.globals.set("bot", new PluginBotWrapper(this));
         this.chunk = this.globals.loadfile(file.getAbsolutePath());
+
+        this.chunk.call();
     }
 
     public PluginDescriptor getDescription() { return this.description; }
@@ -53,13 +56,12 @@ public class Plugin {
 
     void disable() {
         this.enabled = false;
-        this.disableCB.call(CoerceJavaToLua.coerce(this));
+        if (this.disableCB != null) this.disableCB.call(CoerceJavaToLua.coerce(this));
     }
 
     void enable() {
         this.enabled = true;
-        this.chunk.call();
-        this.enableCB.call(CoerceJavaToLua.coerce(this));
+        if (this.enableCB != null) this.enableCB.call(CoerceJavaToLua.coerce(this));
     }
 
     public void setEnableCB(LuaFunction cb) { this.enableCB = cb; }
@@ -73,7 +75,7 @@ public class Plugin {
             for (PluginCommand c : p.getCommands()) {
                 if (c.getCommand().equals(cmd.getCommand())) {
                     logger.warn("Plugin " + this.getName() + " is requesting to register command " + cmd.getCommand() +
-                                ", but plugin " + p.getName() + " owns it. ");
+                                ", but the plugin " + p.getName() + " owns it. ");
                     return;
                 }
             }
