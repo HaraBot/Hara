@@ -49,7 +49,7 @@ public class PluginLoader {
                 loadPlugin(c, f);
             }
         } else {
-            logger.warn("There are no plugins installed in the plugins/ folder. This bot has no functionality now, apart from being online.");
+            logger.warn("There are no plugins installed in the plugins/ folder. This bot has no functionality, apart from being online.");
         }
 
         PluginHandler.enableAll();
