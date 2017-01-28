@@ -2,18 +2,21 @@ package ml.jammehcow;
 
 import ml.jammehcow.Config.Config;
 import ml.jammehcow.Handlers.EventHandlers;
-import ml.jammehcow.LuaEnvironment.LuaEnvironment;
+import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
+import sx.blah.discord.api.events.Event;
 import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static ml.jammehcow.Config.ConfigWrapper.getConfig;
+import static ml.jammehcow.Handlers.EventHandlers.events;
 
 /**
  * Author: jammehcow.
@@ -41,13 +44,17 @@ public class Main {
 
         if (argsList.contains("debug")) { debug = true; }
 
+        Reflections reflections = new Reflections("sx.blah.discord.handle.impl.events");
+        Set<Class<?extends Event>> subTypes = reflections.getSubTypesOf(Event.class);
+        events.addAll(subTypes);
+
+        logger.info("Registered " + subTypes.size() + " events from Discord4J.");
+
         if (!argsList.contains("noclient")) {
             client = getClient();
             EventDispatcher dispatcher = client.getDispatcher();
             dispatcher.registerListener(new EventHandlers());
         }
-
-        LuaEnvironment.init();
     }
 
     private static IDiscordClient getClient() throws DiscordException {

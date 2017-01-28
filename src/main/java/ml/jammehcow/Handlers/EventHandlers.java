@@ -1,21 +1,25 @@
 package ml.jammehcow.Handlers;
 
+import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginDescriptor;
 import ml.jammehcow.Main;
+import org.luaj.vm2.LuaFunction;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import sx.blah.discord.api.events.Event;
 import sx.blah.discord.api.events.EventSubscriber;
-import sx.blah.discord.handle.impl.events.MessageReceivedEvent;
-import sx.blah.discord.handle.impl.events.ReactionAddEvent;
-import sx.blah.discord.handle.impl.events.ReadyEvent;
+import sx.blah.discord.handle.impl.events.*;
 import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.util.DiscordException;
 import sx.blah.discord.util.EmbedBuilder;
 import sx.blah.discord.util.MissingPermissionsException;
 import sx.blah.discord.util.RateLimitException;
+import sx.blah.discord.util.audio.events.AudioPlayerEvent;
 
 import java.awt.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPlugins;
 import static ml.jammehcow.Main.client;
@@ -26,9 +30,138 @@ import static ml.jammehcow.Main.client;
  */
 
 public class EventHandlers {
+    public static HashMap<Class<? extends Event>, HashMap<Plugin, LuaFunction>> registeredEvents = new HashMap<>();
+    public static ArrayList<Class<? extends Event>> events = new ArrayList<>();
+
     @EventSubscriber
     public void onReadyEvent(ReadyEvent event) {
-        // Do something amazing and bot-ish.
+        LuaEnvironment.init();
+    }
+
+    @EventSubscriber
+    public void onAllUsersReceivedEvent(AllUsersReceivedEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onAudioPlayerEvent(AudioPlayerEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onChannelCreateEvent(ChannelCreateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onChannelDeleteEvent(ChannelDeleteEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onChannelUpdateEvent(ChannelUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onDisconnectedEvent(DisconnectedEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onGuildCreateEvent(GuildCreateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onGuildEmojisUpdateEvent(GuildEmojisUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onGuildLeaveEvent(GuildLeaveEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onGuildTransferOwnershipEvent(GuildTransferOwnershipEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onGuildUnavailableEvent(GuildUnavailableEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onGuildUpdateEvent(GuildUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onInviteReceivedEvent(InviteReceivedEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onLoginEvent(LoginEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onMentionEvent(MentionEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onMessageDeleteEvent(MessageDeleteEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onMessageEmbedEvent(MessageEmbedEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onMessagePinEvent(MessagePinEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
     }
 
     @EventSubscriber
@@ -36,11 +169,14 @@ public class EventHandlers {
         IMessage m = event.getMessage();
         String content = m.getContent().trim() + " ";
 
+        //event.getMessage().getChannel().getPinnedMessages().forEach((a) -> event.getMessage().getChannel().pin(event.getMessage().getChannel().sendMessage(a.getFormattedContent())));
+        //event.getMessage().getChannel().pin(event.getMessage().getChannel().sendMessage("This"));
+
         if (content.startsWith(Main.prefix)) {
             if (content.startsWith(Main.prefix + "plugins ")) {
                 EmbedBuilder embed = new EmbedBuilder()
                         .withFooterText("Hara made with \u2764 and \uD83D\uDD52 by James Upjohn")
-                        .withTimestamp(LocalDateTime.now())
+                        .withTimestamp(System.currentTimeMillis())
                         .withAuthorName(client.getOurUser().getName())
                         .withAuthorIcon(client.getOurUser().getAvatarURL())
                         .withColor(Color.GREEN);
@@ -70,7 +206,7 @@ public class EventHandlers {
                             .withTitle("Plugin: " + pluginRef.getName())
                             .withDescription(pluginRef.getDescription().getDescription())
                             .withFooterText("Hara made with \u2764 and \uD83D\uDD52 by James Upjohn")
-                            .withTimestamp(LocalDateTime.now())
+                            .withTimestamp(System.currentTimeMillis())
                             .withAuthorName(pluginRef.getDescription().getAuthor())
                             .withColor(Color.RED);
 
@@ -85,7 +221,8 @@ public class EventHandlers {
                     }
 
                     if (!pluginRef.getCommands().isEmpty()) {
-                        for (PluginCommand c : pluginRef.getCommands()) embed.appendField("``" + Main.prefix + c.getCommand() + "``", "**Usage:** " + c.getUsage(), true);
+                        for (PluginCommand c : pluginRef.getCommands())
+                            embed.appendField("``" + Main.prefix + c.getCommand() + "``", "**Usage:** " + c.getUsage(), true);
                     } else {
                         embed.appendField("There are no commands!", "Does this plugin have any commands?", false);
                     }
@@ -97,10 +234,6 @@ public class EventHandlers {
             } else if (content.startsWith(Main.prefix + "quit ")) {
                 client.logout();
                 System.exit(0);
-            } else if (content.startsWith(Main.prefix + "clear ")) {
-                int msgCount = m.getChannel().getMessages().size();
-                m.getChannel().getMessages().bulkDelete(m.getChannel().getMessages());
-                m.getChannel().sendMessage((msgCount > 100) ? "You owe me for clearing " + Integer.toString(msgCount) + " messages. \nA beer or two sounds good." : "I've just cleared " + Integer.toString(msgCount) + " messages. How fun!");
             } else {
                 if (!CommandPluginHandler.parseCommand(m)) {
                     m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, that's not a valid command!");
@@ -110,9 +243,255 @@ public class EventHandlers {
     }
 
     @EventSubscriber
-    public void onReactionAddEvent(ReactionAddEvent event) throws RateLimitException, DiscordException, MissingPermissionsException {
-        if (event.getReaction().toString().equals("\uD83D\uDC4D")) {
-            event.getMessage().getChannel().sendMessage("<@" + event.getUser().getID() + ">, I'm glad you like it!");
+    public void onMessageSendEvent(MessageSendEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
+
+    @EventSubscriber
+    public void onMessageUnpinEvent(MessageUnpinEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onMessageUpdateEvent(MessageUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onModuleDisabledEvent(ModuleDisabledEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onModuleEnabledEvent(ModuleEnabledEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onNickNameChangeEvent(NickNameChangeEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onPresenceUpdateEvent(PresenceUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onReactionAddEvent(ReactionAddEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onReactionRemoveEvent(ReactionRemoveEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onReconnectFailureEvent(ReconnectFailureEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onReconnectSuccessEvent(ReconnectSuccessEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onResumedEvent(ResumedEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onRoleCreateEvent(RoleCreateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onRoleDeleteEvent(RoleDeleteEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onRoleUpdateEvent(RoleUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onShardReadyEvent(ShardReadyEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onStatusChangeEvent(StatusChangeEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onTypingEvent(TypingEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserBanEvent(UserBanEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserJoinEvent(UserJoinEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserLeaveEvent(UserLeaveEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserPardonEvent(UserPardonEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserRoleUpdateEvent(UserRoleUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserUpdateEvent(UserUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserVoiceChannelJoinEvent(UserVoiceChannelJoinEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserVoiceChannelLeaveEvent(UserVoiceChannelLeaveEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserVoiceChannelMoveEvent(UserVoiceChannelMoveEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onVoiceChannelCreateEvent(VoiceChannelCreateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onVoiceChannelDeleteEvent(VoiceChannelDeleteEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onVoiceChannelUpdateEvent(VoiceChannelUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onVoiceDisconnectedEvent(VoiceDisconnectedEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onVoicePingEvent(VoicePingEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onVoiceUserSpeakingEvent(VoiceUserSpeakingEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onWebhookCreateEvent(WebhookCreateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onWebhookDeleteEvent(WebhookDeleteEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onWebhookUpdateEvent(WebhookUpdateEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
 }

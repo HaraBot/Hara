@@ -1,5 +1,6 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
+import ml.jammehcow.Handlers.EventHandlers;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
 import ml.jammehcow.Main;
@@ -7,6 +8,10 @@ import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
+
+import java.util.HashMap;
+
+import static ml.jammehcow.Handlers.EventHandlers.events;
 
 /**
  * Author: jammehcow.
@@ -45,6 +50,15 @@ public class PluginBotWrapper extends LuaTable {
             @Override
             public Varargs invoke(Varargs args) {
                 plugin.setDisableCB(args.checkfunction(1));
+                return LuaValue.NIL;
+            }
+        });
+
+        set("registerEvent", new VarArgFunction() {
+            @Override
+            public Varargs invoke(Varargs args) {
+                EventHandlers.registeredEvents.put(events.get(args.toint(1)), new HashMap<>());
+                EventHandlers.registeredEvents.get(events.get(args.toint(1))).put(plugin, args.checkfunction(2));
                 return LuaValue.NIL;
             }
         });

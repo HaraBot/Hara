@@ -2,6 +2,7 @@ package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginBotWrapper;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginEventWrapper;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
@@ -30,7 +31,7 @@ public class Plugin {
     private LuaFunction enableCB;
     private LuaFunction disableCB;
 
-    private Globals globals;
+    public Globals globals;
 
     public Plugin(String name, File file, Map config) {
         this.name = name;
@@ -45,6 +46,7 @@ public class Plugin {
         this.description = new PluginDescriptor(this.name, (String)this.config.get("version"), (String)this.config.get("description"), (String)this.config.get("author"));
 
         this.globals.set("bot", new PluginBotWrapper(this));
+        this.globals.set("events", new PluginEventWrapper());
         this.chunk = this.globals.loadfile(file.getAbsolutePath());
 
         this.chunk.call();
