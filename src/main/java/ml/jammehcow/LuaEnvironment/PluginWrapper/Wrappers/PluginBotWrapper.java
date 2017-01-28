@@ -30,14 +30,6 @@ public class PluginBotWrapper extends LuaTable {
             }
         });
 
-        set("registerEvent", new VarArgFunction() {
-            @Override
-            public Varargs invoke(Varargs args) {
-                // TODO: add event handling to plugins (e.g. ReactionAddEvent)
-                return LuaValue.NIL;
-            }
-        });
-
         set("pluginEnable", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
