@@ -169,9 +169,6 @@ public class EventHandlers {
         IMessage m = event.getMessage();
         String content = m.getContent().trim() + " ";
 
-        //event.getMessage().getChannel().getPinnedMessages().forEach((a) -> event.getMessage().getChannel().pin(event.getMessage().getChannel().sendMessage(a.getFormattedContent())));
-        //event.getMessage().getChannel().pin(event.getMessage().getChannel().sendMessage("This"));
-
         if (content.startsWith(Main.prefix)) {
             if (content.startsWith(Main.prefix + "plugins ")) {
                 EmbedBuilder embed = new EmbedBuilder()
