@@ -8,6 +8,7 @@ import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import java.util.HashMap;
 
@@ -52,6 +53,13 @@ public class PluginBotWrapper extends LuaTable {
                 EventHandlers.registeredEvents.put(events.get(args.toint(1)), new HashMap<>());
                 EventHandlers.registeredEvents.get(events.get(args.toint(1))).put(plugin, args.checkfunction(2));
                 return LuaValue.NIL;
+            }
+        });
+
+        set("getClient", new VarArgFunction() {
+            @Override
+            public Varargs invoke(Varargs args) {
+                return CoerceJavaToLua.coerce(Main.client);
             }
         });
 
