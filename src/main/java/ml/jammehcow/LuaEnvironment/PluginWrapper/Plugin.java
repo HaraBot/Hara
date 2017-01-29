@@ -2,6 +2,7 @@ package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginBotWrapper;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginEmojiWrapper;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginEventWrapper;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
@@ -47,6 +48,7 @@ public class Plugin {
 
         this.globals.set("bot", new PluginBotWrapper(this));
         this.globals.set("events", new PluginEventWrapper());
+        this.globals.set("emoji", new PluginEmojiWrapper());
         this.chunk = this.globals.loadfile(file.getAbsolutePath());
 
         this.chunk.call();
