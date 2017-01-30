@@ -15,3 +15,13 @@ token: "your_discord_bot_token"
 # The bot will only reply if this prefix is used.
 
 prefix: "!"
+
+# Enable or disable LavaPlayer usage
+# LavaPlayer handles YouTube and audio file playback. Disabling this will stop Lua from interacting with it.
+
+lavaplayer: false
+
+# Enable or disable SQL usage
+# SQL may be required by some plugins. If a plugin requests it when it's disabled, you will be notified.
+
+sql: false
