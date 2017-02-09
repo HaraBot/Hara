@@ -72,6 +72,12 @@
             <name>bintray</name>
             <url>http://jcenter.bintray.com</url>
         </repository>
+
+        <repository>
+            <id>repo.arsenarsen.com</id>
+            <url>https://repo.arsenarsen.com/content/repositories/snapshots/</url>
+            <name>arsenarsen</name>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -145,11 +151,24 @@
             <version>1.1.45</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.arsenarsen.lavaplayer-bridge</groupId>
+            <artifactId>discord4j-impl</artifactId>
+            <version>1.11-SNAPSHOT</version>
+        </dependency>
+
         <!-- H2 database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.193</version>
+        </dependency>
+
+        <!-- Unirest -->
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.4.9</version>
         </dependency>
     </dependencies>
 </project>
