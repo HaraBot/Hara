@@ -9,6 +9,7 @@ import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import sx.blah.discord.util.RequestBuffer;
 
 import java.util.HashMap;
 
@@ -60,6 +61,14 @@ public class PluginBotWrapper extends LuaTable {
             @Override
             public Varargs invoke(Varargs args) {
                 return CoerceJavaToLua.coerce(Main.client);
+            }
+        });
+
+        set("requestBuffer", new VarArgFunction() {
+            @Override
+            public Varargs invoke(Varargs args) {
+                RequestBuffer.request(() -> args.checkfunction(1).call());
+                return LuaValue.NIL;
             }
         });
 
