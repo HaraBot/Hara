@@ -21,6 +21,11 @@ prefix: "!"
 
 lavaplayer: false
 
+# YouTube API key
+# AN API key is required to use the lavaplayer implementation. You can find out more at https://developers.google.com/youtube/registering_an_application
+
+youtubeAPIKey: "your_YouTube_API_key"
+
 # Enable or disable SQL usage
 # SQL may be required by some plugins. If a plugin requests it when it's disabled, you will be notified.
 
