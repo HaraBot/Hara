@@ -34,14 +34,14 @@ public class ConfigWrapper {
         return results;
     }
 
-    private static String exportConfig() throws Exception {
+    private static void exportConfig() {
         InputStream stream = null;
         OutputStream resStreamOut = null;
         String jarFolder = null;
 
         try {
             stream = Main.class.getResourceAsStream("config.yml");
-            if(stream == null) throw new Exception("Cannot get resource \"" + "config.yml" + "\" from Jar file.");
+            if (stream == null) throw new Exception("Cannot get resource \"" + "config.yml" + "\" from Jar file.");
 
             int readBytes;
             byte[] buffer = new byte[4096];
@@ -53,10 +53,10 @@ public class ConfigWrapper {
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
-            if (stream != null) stream.close();
-            if (resStreamOut != null) resStreamOut.close();
+            try {
+                if (stream != null) stream.close();
+                if (resStreamOut != null) resStreamOut.close();
+            } catch (IOException e) { e.printStackTrace(); }
         }
-
-        return jarFolder + "config.yml";
     }
 }
