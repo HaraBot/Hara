@@ -25,13 +25,14 @@ import static ml.jammehcow.Handlers.EventHandlers.events;
 
 public class Main {
     // Sets logger to SLF4J with logback
-    public static final Logger logger  = LoggerFactory.getLogger(Main.class);
-    private static Config config       = getConfig();
-    private static final double REV    = 1.0;
+    public static final Logger logger   = LoggerFactory.getLogger(Main.class);
+    private static Config config        = getConfig();
+    private static final double REV     = 1.0;
 
-    public static final String prefix  = config.prefix;
+    public static final String prefix   = config.prefix;
+    public static String YouTubeAPIKey  = config.youtubeAPIKey;
 
-    public static boolean debug = false;
+    public static boolean debug         = false;
     public static IDiscordClient client;
 
 
@@ -42,7 +43,7 @@ public class Main {
 
         List<String> argsList = Arrays.asList(args);
 
-        if (argsList.contains("debug")) { debug = true; }
+        if (argsList.contains("debug")) debug = true;
 
         Reflections reflections = new Reflections("sx.blah.discord.handle.impl.events");
         Set<Class<?extends Event>> subTypes = reflections.getSubTypesOf(Event.class);
