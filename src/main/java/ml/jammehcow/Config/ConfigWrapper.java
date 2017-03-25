@@ -18,13 +18,13 @@ public class ConfigWrapper {
         Config results = null;
 
         try {
-            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
+            // Surely this could look better!
+            new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
 
             YamlReader reader = new YamlReader(new FileReader("config.yml"));
             results = reader.read(Config.class);
         } catch (FileNotFoundException e) {
             InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
-
 
             if (resource != null) exportConfig();
         } catch (YamlException e) {
