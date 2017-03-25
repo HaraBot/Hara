@@ -11,10 +11,7 @@ import sx.blah.discord.api.events.Event;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.*;
 import sx.blah.discord.handle.obj.IMessage;
-import sx.blah.discord.util.DiscordException;
-import sx.blah.discord.util.EmbedBuilder;
-import sx.blah.discord.util.MissingPermissionsException;
-import sx.blah.discord.util.RateLimitException;
+import sx.blah.discord.util.*;
 import sx.blah.discord.util.audio.events.AudioPlayerEvent;
 
 import java.awt.*;
@@ -186,7 +183,11 @@ public class EventHandlers {
                     embed.appendField("No plugins to show", "There are no plugins loaded or enabled on this bot", false);
                 }
 
-                m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's a list of installed plugins.", embed.build(), false);
+                RequestBuffer.request(() -> {
+                    try {
+                        m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's a list of installed plugins.", embed.build(), false);
+                    } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
+                });
             } else if (content.startsWith(Main.prefix + "plugin ")) {
                 String args = content.replace(Main.prefix + "plugin ", "").trim();
 
@@ -224,16 +225,36 @@ public class EventHandlers {
                         embed.appendField("There are no commands!", "Does this plugin have any commands?", false);
                     }
 
-                    m.getChannel().sendMessage(null, embed.build(), false);
+                    RequestBuffer.request(() -> {
+                        try {
+                            m.getChannel().sendMessage(null, embed.build(), false);
+                        } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
+                    });
                 } else {
-                    m.getChannel().sendMessage("That's not a valid plugin name!");
+                    RequestBuffer.request(() -> {
+                        try {
+                            m.getChannel().sendMessage("That's not a valid plugin name!");
+                        } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
+                    });
                 }
             } else if (content.startsWith(Main.prefix + "quit ")) {
                 client.logout();
                 System.exit(0);
+            } else if (content.startsWith("help")) {
+                String helpMessage = "**Help for " + client.getOurUser().getDisplayName(m.getGuild()) + "**";
+
+                RequestBuffer.request(() -> {
+                    try {
+                        m.getChannel().sendMessage(helpMessage);
+                    } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
+                });
             } else {
                 if (!CommandPluginHandler.parseCommand(m)) {
-                    m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, that's not a valid command!");
+                    RequestBuffer.request(() -> {
+                        try {
+                            m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, that's not a valid command!");
+                        } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
+                    });
                 }
             }
         }
