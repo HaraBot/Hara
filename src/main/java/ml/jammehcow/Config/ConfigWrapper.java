@@ -12,7 +12,7 @@ import java.io.*;
  */
 
 public class ConfigWrapper {
-    private static final int CURRENT_REV = 1;
+    private static final int CURRENT_REV = 2;
 
     public static Config getConfig() {
         Config results = null;
@@ -20,21 +20,14 @@ public class ConfigWrapper {
         try {
             File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
 
-            if (!cfgFile.exists()) {
-                InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
-
-                if (resource != null) {
-                    try {
-                        exportConfig();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
             YamlReader reader = new YamlReader(new FileReader("config.yml"));
             results = reader.read(Config.class);
-        } catch (FileNotFoundException | YamlException e) {
+        } catch (FileNotFoundException e) {
+            InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
+
+
+            if (resource != null) exportConfig();
+        } catch (YamlException e) {
             e.printStackTrace();
         }
 
