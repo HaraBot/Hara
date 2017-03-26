@@ -1,7 +1,5 @@
 package ml.jammehcow.Handlers;
 
-import com.arsenarsen.lavaplayerbridge.libraries.UnknownBindingException;
-import ml.jammehcow.LavaPlayer.AudioManager;
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
@@ -60,11 +58,11 @@ public class EventHandlers {
     public void onReadyEvent(ReadyEvent event) {
         LuaEnvironment.init();
 
-        try {
+        /*try {
             Main.manager = new AudioManager();
         } catch (UnknownBindingException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @EventSubscriber
