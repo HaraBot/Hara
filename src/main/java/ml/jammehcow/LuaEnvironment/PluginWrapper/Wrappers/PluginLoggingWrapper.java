@@ -1,11 +1,12 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
-
-import static ml.jammehcow.Main.logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Author: jammehcow.
@@ -13,11 +14,15 @@ import static ml.jammehcow.Main.logger;
  */
 
 public class PluginLoggingWrapper extends LuaTable {
-    PluginLoggingWrapper() {
+    private static Logger logger = LoggerFactory.getLogger(PluginLoggingWrapper.class);
+
+    public PluginLoggingWrapper(Plugin plugin) {
+        String prefix = "[plugin-" + plugin.getName() + "] ";
+
         set("info", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                logger.info(args.tojstring(1));
+                logger.info(prefix + args.tojstring(1));
                 return LuaValue.NIL;
             }
         });
@@ -25,7 +30,7 @@ public class PluginLoggingWrapper extends LuaTable {
         set("warn", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                logger.warn(args.tojstring(1));
+                logger.warn(prefix + args.tojstring(1));
                 return LuaValue.NIL;
             }
         });
@@ -33,7 +38,7 @@ public class PluginLoggingWrapper extends LuaTable {
         set("error", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                logger.error(args.tojstring(1));
+                logger.error(prefix + args.tojstring(1));
                 return LuaValue.NIL;
             }
         });
@@ -41,7 +46,7 @@ public class PluginLoggingWrapper extends LuaTable {
         set("debug", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                logger.debug(args.tojstring(1));
+                logger.debug(prefix + args.tojstring(1));
                 return LuaValue.NIL;
             }
         });

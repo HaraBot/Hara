@@ -1,9 +1,7 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginBotWrapper;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginEmojiWrapper;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.PluginEventWrapper;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers.*;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.LuaValue;
@@ -46,7 +44,9 @@ public class Plugin {
         this.config = config;
         this.description = new PluginDescriptor(this.name, (String)this.config.get("version"), (String)this.config.get("description"), (String)this.config.get("author"));
 
-        this.globals.set("bot", new PluginBotWrapper(this));
+        this.globals.set("plugin", new PluginWrapper(this));
+        this.globals.set("bot", new PluginBotWrapper());
+        this.globals.set("logger", new PluginLoggingWrapper(this));
         this.globals.set("events", new PluginEventWrapper());
         this.globals.set("emoji", new PluginEmojiWrapper());
         this.chunk = this.globals.loadfile(file.getAbsolutePath());
