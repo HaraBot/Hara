@@ -39,7 +39,10 @@ public class PluginLoader {
 
     public static ArrayList<Plugin> getLoadedPlugins() { return loadedPlugins; }
 
-    public static void removePlugin(Plugin p) { loadedPlugins.remove(p); }
+    // Keeping for a possible disable command.
+    //public static void removePlugin(Plugin p) { loadedPlugins.remove(p); }
+
+    public static void removeAllPlugins() { loadedPlugins.clear(); }
 
     public static void loadAllPlugins() {
         ArrayList<File> available = PluginHandler.getAvailablePlugins();

@@ -21,9 +21,7 @@ public class PluginHandler {
         File pluginsDir = null;
         try {
             pluginsDir = new File(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile() + File.separator + "plugins");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        } catch (URISyntaxException e) { e.printStackTrace(); }
 
         if (!pluginsDir.exists()) {
             pluginsDir.mkdir();
@@ -60,7 +58,8 @@ public class PluginHandler {
             // Disable each plugin in the list and remove it from the array.
             // Disabling is not like enabling. It removes it from memory, there is no setting self.enabled to false unless done single.
             p.disable();
-            PluginLoader.removePlugin(p);
         }
+
+        PluginLoader.removeAllPlugins();
     }
 }

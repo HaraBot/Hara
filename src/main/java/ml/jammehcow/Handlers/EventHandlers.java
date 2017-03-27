@@ -1,10 +1,7 @@
 package ml.jammehcow.Handlers;
 
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginDescriptor;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader;
+import ml.jammehcow.LuaEnvironment.PluginWrapper.*;
 import ml.jammehcow.Main;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
@@ -35,6 +32,8 @@ import sx.blah.discord.handle.impl.events.shard.*;
 import sx.blah.discord.handle.impl.events.user.PresenceUpdateEvent;
 import sx.blah.discord.handle.impl.events.user.UserUpdateEvent;
 import sx.blah.discord.handle.obj.IMessage;
+import sx.blah.discord.handle.obj.IRole;
+import sx.blah.discord.handle.obj.Permissions;
 import sx.blah.discord.util.*;
 import sx.blah.discord.util.audio.events.*;
 
@@ -287,6 +286,13 @@ public class EventHandlers {
             } else if (command.equals("quit")) {
                 client.logout();
                 System.exit(0);
+            } else if (command.equals("reload")) {
+                if (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR)) {
+                    // TODO: Check for role names "Bot commander"
+                    PluginHandler.reloadAllPlugins();
+                } else {
+                    RequestBuffer.request(() -> m.getChannel().sendMessage(m.getAuthor().mention() + " you don't have permission to run that command!"));
+                }
             } else if (command.equals("help")) {
                 String helpMessage = "**Help for " + client.getOurUser().getDisplayName(m.getGuild()) + "**";
 
