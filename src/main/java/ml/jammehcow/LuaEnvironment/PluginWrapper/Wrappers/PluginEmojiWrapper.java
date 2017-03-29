@@ -13,7 +13,7 @@ import org.luaj.vm2.lib.VarArgFunction;
 
 public class PluginEmojiWrapper extends LuaTable {
     public PluginEmojiWrapper() {
-        set("getString", new VarArgFunction() {
+        set("getAlias", new VarArgFunction() {
             // Returns alias (string) version of emoji (like :thumbsup:)
             @Override
             public Varargs invoke(Varargs args) {
