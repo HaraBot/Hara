@@ -32,9 +32,7 @@ public class PluginLoader {
                 loadedPlugins.add(new Plugin(name, main, configMap));
                 logger.info("Loaded plugin " + name);
             }
-        } catch (FileNotFoundException | YamlException e) {
-            e.printStackTrace();
-        }
+        } catch (FileNotFoundException | YamlException e) { e.printStackTrace(); }
     }
 
     public static ArrayList<Plugin> getLoadedPlugins() { return loadedPlugins; }
