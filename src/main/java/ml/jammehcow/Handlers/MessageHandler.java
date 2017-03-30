@@ -101,7 +101,7 @@ public class MessageHandler {
             } else if (command.equals("quit")) {
                 client.logout();
                 System.exit(0);
-            } else if (command.equals("play")) {
+            } /*else if (command.equals("play")) {
                 Optional<String> resultQueue = Main.manager.queueYouTubeVid(content.replace(Main.prefix + "play ", "").trim().toLowerCase(), m.getGuild().getID());
 
                 if (!resultQueue.isPresent())
@@ -109,7 +109,7 @@ public class MessageHandler {
                 else {
                     // stub
                 }
-            } else if (command.equals("reload")) {
+            }*/ else if (command.equals("reload")) {
                 if (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR)) {
                     // TODO: Check for role names "Bot commander"
                     PluginHandler.reloadAllPlugins();
