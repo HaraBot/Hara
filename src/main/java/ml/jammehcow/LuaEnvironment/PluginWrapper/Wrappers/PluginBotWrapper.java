@@ -6,6 +6,7 @@ import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import sx.blah.discord.util.EmbedBuilder;
 import sx.blah.discord.util.RequestBuffer;
 
 /**
@@ -29,6 +30,13 @@ public class PluginBotWrapper extends LuaTable {
             public Varargs invoke(Varargs args) {
                 RequestBuffer.request(() -> args.checkfunction(1).call());
                 return LuaValue.NIL;
+            }
+        });
+
+        set("createEmbed", new VarArgFunction() {
+            @Override
+            public Varargs invoke(Varargs args) {
+                return LuaValue.userdataOf(new EmbedBuilder());
             }
         });
     }
