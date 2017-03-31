@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Set;
 
 import static ml.jammehcow.Config.ConfigWrapper.getConfig;
-import static ml.jammehcow.Handlers.EventHandlers.events;
 
 /**
  * Author: jammehcow.
@@ -28,17 +27,17 @@ public class Main {
     // Sets logger to SLF4J with logback
     public static final Logger logger   = LoggerFactory.getLogger(Main.class);
     private static Config config        = getConfig();
-    private static final double REV     = 1.0;
+    private static final double rev     = 1.0;
 
     public static final String prefix   = config.prefix;
-    public static String YouTubeAPIKey  = config.youtubeAPIKey;
+    public static final String YouTubeAPIKey  = config.youtubeAPIKey;
 
     public static boolean debug         = false;
     public static IDiscordClient client;
 
 
     public static void main(String[] args) throws DiscordException {
-        logger.info("Starting Hara v" + REV);
+        logger.info("Starting Hara v" + rev);
 
         if (config.token.equals("your_discord_bot_token")) throw new DiscordException("Your bot is using the placeholder token. You need to change the \"token\" field in the Hara config to your bot token.");
 
@@ -48,7 +47,7 @@ public class Main {
 
         Reflections reflections = new Reflections("sx.blah.discord.handle.impl.events");
         Set<Class<?extends Event>> subTypes = reflections.getSubTypesOf(Event.class);
-        events.addAll(subTypes);
+        EventHandlers.events.addAll(subTypes);
 
         logger.info("Registered " + subTypes.size() + " events from Discord4J.");
 
