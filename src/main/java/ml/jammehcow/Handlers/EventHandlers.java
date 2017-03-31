@@ -41,8 +41,8 @@ import java.util.HashMap;
  */
 
 public class EventHandlers {
-    public static HashMap<Class<? extends Event>, HashMap<Plugin, LuaFunction>> registeredEvents = new HashMap<>();
-    public static ArrayList<Class<? extends Event>> events = new ArrayList<>();
+    public static final HashMap<Class<? extends Event>, HashMap<Plugin, LuaFunction>> registeredEvents = new HashMap<>();
+    public static final ArrayList<Class<? extends Event>> events = new ArrayList<>();
 
     @EventSubscriber
     public void onReadyEvent(ReadyEvent event) {
