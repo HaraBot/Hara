@@ -12,6 +12,9 @@ import static ml.jammehcow.Handlers.EventHandlers.events;
 public class PluginEventWrapper extends LuaTable {
     public PluginEventWrapper() {
         // Iterate through the defined events and bind a LuaValue of the class name (String) to the event index
-        events.forEach((e) -> set(e.getName().replace("sx.blah.discord.handle.impl.events.", ""), events.indexOf(e)));
+        events.forEach((e) -> {
+            String [] eventSplit = e.toString().split("\\.");
+            set(eventSplit[eventSplit.length - 1], events.indexOf(e));
+        });
     }
 }
