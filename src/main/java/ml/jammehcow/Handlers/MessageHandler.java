@@ -9,7 +9,6 @@ import sx.blah.discord.handle.obj.Permissions;
 import sx.blah.discord.util.*;
 
 import java.awt.*;
-import java.util.Optional;
 
 import static ml.jammehcow.Main.client;
 
