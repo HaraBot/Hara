@@ -2,7 +2,6 @@ package ml.jammehcow.Config;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
-import jdk.internal.util.xml.impl.ReaderUTF8;
 import ml.jammehcow.Main;
 
 import java.io.*;
@@ -23,14 +22,14 @@ public class ConfigWrapper {
             File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
 
             if (cfgFile.exists()) {
-                YamlReader reader = new YamlReader(new ReaderUTF8(new FileInputStream(cfgFile)));
+                YamlReader reader = new YamlReader(new InputStreamReader(new FileInputStream(cfgFile), "UTF-8"));
                 results = reader.read(Config.class);
             } else {
                 InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
 
                 if (resource != null) exportConfig();
             }
-        } catch (YamlException | FileNotFoundException e) {
+        } catch (YamlException | FileNotFoundException | UnsupportedEncodingException e) {
             // Shouldn't reach a FileNotFoundException
             e.printStackTrace();
         }
