@@ -2,6 +2,7 @@ package ml.jammehcow.Config;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
+import jdk.internal.util.xml.impl.ReaderUTF8;
 import ml.jammehcow.Main;
 
 import java.io.*;
@@ -19,15 +20,18 @@ public class ConfigWrapper {
 
         try {
             // Surely this could look better!
-            new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
+            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
 
-            YamlReader reader = new YamlReader(new FileReader("config.yml"));
-            results = reader.read(Config.class);
-        } catch (FileNotFoundException e) {
-            InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
+            if (cfgFile.exists()) {
+                YamlReader reader = new YamlReader(new ReaderUTF8(new FileInputStream(cfgFile)));
+                results = reader.read(Config.class);
+            } else {
+                InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
 
-            if (resource != null) exportConfig();
-        } catch (YamlException e) {
+                if (resource != null) exportConfig();
+            }
+        } catch (YamlException | FileNotFoundException e) {
+            // Shouldn't reach a FileNotFoundException
             e.printStackTrace();
         }
 
@@ -37,7 +41,6 @@ public class ConfigWrapper {
     private static void exportConfig() {
         InputStream stream = null;
         OutputStream resStreamOut = null;
-        String jarFolder = null;
 
         try {
             stream = Main.class.getResourceAsStream("config.yml");
@@ -46,7 +49,7 @@ public class ConfigWrapper {
             int readBytes;
             byte[] buffer = new byte[4096];
 
-            jarFolder = new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
+            String jarFolder = new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
             resStreamOut = new FileOutputStream(jarFolder + File.separator + "config.yml");
 
             while ((readBytes = stream.read(buffer)) > 0) resStreamOut.write(buffer, 0, readBytes);
