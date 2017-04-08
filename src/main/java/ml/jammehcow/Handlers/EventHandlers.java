@@ -19,6 +19,7 @@ import sx.blah.discord.handle.impl.events.guild.channel.webhook.WebhookCreateEve
 import sx.blah.discord.handle.impl.events.guild.channel.webhook.WebhookDeleteEvent;
 import sx.blah.discord.handle.impl.events.guild.channel.webhook.WebhookUpdateEvent;
 import sx.blah.discord.handle.impl.events.guild.member.GuildMemberEvent;
+import sx.blah.discord.handle.impl.events.guild.member.UserJoinEvent;
 import sx.blah.discord.handle.impl.events.guild.role.RoleCreateEvent;
 import sx.blah.discord.handle.impl.events.guild.role.RoleDeleteEvent;
 import sx.blah.discord.handle.impl.events.guild.role.RoleUpdateEvent;
@@ -344,6 +345,13 @@ public class EventHandlers {
 
     @EventSubscriber
     public void onTypingEvent(TypingEvent event) {
+        if (registeredEvents.get(event.getClass()) != null) {
+            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        }
+    }
+
+    @EventSubscriber
+    public void onUserJoinEvent(UserJoinEvent event) {
         if (registeredEvents.get(event.getClass()) != null) {
             registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
