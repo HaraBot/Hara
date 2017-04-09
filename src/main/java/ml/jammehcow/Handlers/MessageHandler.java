@@ -112,6 +112,7 @@ public class MessageHandler {
                 if (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR)) {
                     // TODO: Check for role names "Bot commander"
                     PluginHandler.reloadAllPlugins();
+                    m.getChannel().sendMessage("Reloaded " + PluginLoader.getLoadedPlugins().size() + " plugins! Try " + Main.prefix + "plugins");
                 } else {
                     RequestBuffer.request(() -> m.getChannel().sendMessage(m.getAuthor().mention() + " you don't have permission to run that command!"));
                 }
