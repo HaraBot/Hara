@@ -2,6 +2,8 @@ package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 import ml.jammehcow.Main;
 import org.luaj.vm2.LuaFunction;
+import org.luaj.vm2.LuaString;
+import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import sx.blah.discord.handle.obj.IMessage;
@@ -29,6 +31,12 @@ public class PluginCommand {
 
     public void callCommand(IMessage m) {
         String[] args = m.getContent().replace(Main.prefix + this.cmd, "").trim().split(" ");
-        this.cb.call(CoerceJavaToLua.coerce(m), CoerceJavaToLua.coerce(args));
+        LuaTable argsTable = new LuaTable();
+
+        for (int i = 0; i < args.length; i++) {
+            argsTable.insert(i, LuaString.valueOf(args[1]));
+        }
+
+        this.cb.call(CoerceJavaToLua.coerce(m), argsTable);
     }
 }
