@@ -33,8 +33,8 @@ public class PluginCommand {
         String[] args = m.getContent().replace(Main.prefix + this.cmd, "").trim().split(" ");
         LuaTable argsTable = new LuaTable();
 
-        for (int i = 0; i < args.length; i++) {
-            argsTable.insert(i, LuaString.valueOf(args[i]));
+        for (String arg : args) {
+            argsTable.insert(0, LuaString.valueOf(arg));
         }
 
         this.cb.call(CoerceJavaToLua.coerce(m), argsTable);
