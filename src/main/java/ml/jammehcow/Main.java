@@ -3,6 +3,7 @@ package ml.jammehcow;
 import ml.jammehcow.Config.Config;
 import ml.jammehcow.Handlers.EventHandlers;
 import ml.jammehcow.Handlers.MessageHandler;
+import ml.jammehcow.LavaPlayer.AudioManager;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,6 @@ public class Main {
     // Sets logger to SLF4J with logback
     public static final Logger logger   = LoggerFactory.getLogger(Main.class);
     private static Config config        = getConfig();
-    private static final double rev     = 1.0;
 
     public static final String prefix   = config.prefix;
     public static final String YouTubeAPIKey  = config.youtubeAPIKey;
@@ -35,10 +35,9 @@ public class Main {
     public static boolean debug         = false;
     public static IDiscordClient client;
 
+    public static AudioManager manager;
 
     public static void main(String[] args) throws DiscordException {
-        logger.info("Starting Hara v" + rev);
-
         if (config.token.equals("your_discord_bot_token")) throw new DiscordException("Your bot is using the placeholder token. You need to change the \"token\" field in the Hara config to your bot token.");
 
         List<String> argsList = Arrays.asList(args);
@@ -56,6 +55,14 @@ public class Main {
             EventDispatcher dispatcher = client.getDispatcher();
             dispatcher.registerListener(new EventHandlers());
             dispatcher.registerListener(new MessageHandler());
+
+            if (config.lavaplayer) {
+                if (config.youtubeAPIKey.equals("your_YouTube_API_key")) {
+                    throw new DiscordException("Your provided YouTube API key is the default key. \nCheck the config for instructions on obtaining one.");
+                } else {
+                    // stub
+                }
+            }
         }
     }
 
