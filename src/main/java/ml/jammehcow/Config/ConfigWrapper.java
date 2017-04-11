@@ -5,6 +5,7 @@ import com.esotericsoftware.yamlbeans.YamlReader;
 import ml.jammehcow.Main;
 
 import java.io.*;
+import java.net.URISyntaxException;
 
 /**
  * Author: jammehcow.
@@ -17,24 +18,33 @@ public class ConfigWrapper {
     public static Config getConfig() {
         Config results = null;
 
+        if (!configExists()) { exportConfig(); }
+
         try {
-            // Surely this could look better!
-            File cfgFile = new File((new File(System.getProperty("java.class.path"))).getAbsoluteFile().getParentFile() + File.separator + "config.yml");
-
-            if (cfgFile.exists()) {
-                YamlReader reader = new YamlReader(new InputStreamReader(new FileInputStream(cfgFile), "UTF-8"));
-                results = reader.read(Config.class);
-            } else {
-                InputStream resource = Main.class.getClassLoader().getResourceAsStream("ml/jammehcow/config.yml");
-
-                if (resource != null) exportConfig();
-            }
-        } catch (YamlException | FileNotFoundException | UnsupportedEncodingException e) {
-            // Shouldn't reach a FileNotFoundException
-            e.printStackTrace();
-        }
+            results = getConfigFromFile();
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
 
         return results;
+    }
+
+    private static boolean configExists() {
+        try {
+            File cfgFile = new File(new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile() + File.separator + "config.yml");
+            return cfgFile.exists();
+        } catch (URISyntaxException e) { e.printStackTrace(); }
+        return true;
+    }
+
+    private static Config getConfigFromFile() throws FileNotFoundException {
+        try {
+            File cfgFile = new File(new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile() + File.separator + "config.yml");
+
+            YamlReader reader = new YamlReader(new InputStreamReader(new FileInputStream(cfgFile), "UTF-8"));
+            return reader.read(Config.class);
+        } catch (YamlException | URISyntaxException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null; // TODO: fix this at some point.
+        }
     }
 
     private static void exportConfig() {
