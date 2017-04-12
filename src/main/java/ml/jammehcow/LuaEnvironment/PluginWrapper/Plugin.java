@@ -56,6 +56,8 @@ public class Plugin {
 
     public PluginDescriptor getDescription() { return this.description; }
 
+    public File getPluginFolder() { return this.pluginFolder; }
+
     public LuaValue getChunk() { return this.chunk; }
 
     void disable() {
