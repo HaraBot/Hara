@@ -36,7 +36,7 @@ public class PluginBotWrapper extends LuaTable {
         set("createEmbed", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                return LuaValue.userdataOf(new EmbedBuilder());
+                return CoerceJavaToLua.coerce(new EmbedBuilder());
             }
         });
     }
