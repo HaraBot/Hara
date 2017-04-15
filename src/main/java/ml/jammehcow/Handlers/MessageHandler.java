@@ -112,9 +112,8 @@ public class MessageHandler {
                 else {
                     // stub
                 }
-            }*/ else if (command.equals("reload")) {
-                if (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR)) {
-                    // TODO: Check for role names "Bot commander"
+            } else if (command.equals("reload")) {
+                if (isTrusted(m)) {
                     PluginHandler.reloadAllPlugins();
                     m.getChannel().sendMessage("Reloaded " + PluginLoader.getLoadedPlugins().size() + " plugins! Try " + Main.prefix + "plugins");
                 } else {
@@ -138,6 +137,10 @@ public class MessageHandler {
                 }
             }
         }
+    }
+
+    public static boolean isTrusted(IMessage m) {
+        return (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR) || m.getAuthor() == client.getApplicationOwner());
     }
 
     private static boolean parseCommand(IMessage m) {
