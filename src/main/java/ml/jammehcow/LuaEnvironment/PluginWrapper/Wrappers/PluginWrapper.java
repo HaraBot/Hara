@@ -35,6 +35,15 @@ public class PluginWrapper extends LuaTable {
             }
         });
 
+        set("registerEvent", new VarArgFunction() {
+            @Override
+            public Varargs invoke(Varargs args) {
+                EventHandlers.registeredEvents.put(events.get(args.toint(1)).getSimpleName(), new HashMap<>());
+                EventHandlers.registeredEvents.get(events.get(args.toint(1)).getSimpleName()).put(plugin, args.checkfunction(2));
+                return LuaValue.NIL;
+            }
+        });
+
         set("pluginEnable", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
@@ -47,15 +56,6 @@ public class PluginWrapper extends LuaTable {
             @Override
             public Varargs invoke(Varargs args) {
                 plugin.setDisableCB(args.checkfunction(1));
-                return LuaValue.NIL;
-            }
-        });
-
-        set("registerEvent", new VarArgFunction() {
-            @Override
-            public Varargs invoke(Varargs args) {
-                EventHandlers.registeredEvents.put(events.get(args.toint(1)), new HashMap<>());
-                EventHandlers.registeredEvents.get(events.get(args.toint(1))).put(plugin, args.checkfunction(2));
                 return LuaValue.NIL;
             }
         });

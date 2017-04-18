@@ -11,9 +11,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
  */
 
 public class LuaEnvironment {
-    public static void init() {
-        PluginLoader.loadAllPlugins();
-    }
+    public static void init() { PluginLoader.loadAllPlugins(); }
 
     public static Globals getEnv() {
         return (Main.debug) ? JsePlatform.debugGlobals() : JsePlatform.standardGlobals();

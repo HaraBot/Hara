@@ -43,7 +43,7 @@ import java.util.HashMap;
  */
 
 public class EventHandlers {
-    public static final HashMap<Class<? extends Event>, HashMap<Plugin, LuaFunction>> registeredEvents = new HashMap<>();
+    public static final HashMap<String, HashMap<Plugin, LuaFunction>> registeredEvents = new HashMap<>();
     public static final ArrayList<Class<? extends Event>> events = new ArrayList<>();
 
     @EventSubscriber
@@ -59,407 +59,407 @@ public class EventHandlers {
 
     @EventSubscriber
     public void onAllUsersReceivedEvent(AllUsersReceivedEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onAudioPlayerCleanEvent(AudioPlayerCleanEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onAudioPlayerInitEvent(AudioPlayerInitEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onChannelCreateEvent(ChannelCreateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onChannelDeleteEvent(ChannelDeleteEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onChannelUpdateEvent(ChannelUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onDisconnectedEvent(DisconnectedEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildCreateEvent(GuildCreateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildEmojisUpdateEvent(GuildEmojisUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildLeaveEvent(GuildLeaveEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildMemberEvent(GuildMemberEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildTransferOwnershipEvent(GuildTransferOwnershipEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildUnavailableEvent(GuildUnavailableEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onGuildUpdateEvent(GuildUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onLoginEvent(LoginEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onLoopStateChangeEvent(LoopStateChangeEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onNicknameChangedEvent(NicknameChangedEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMentionEvent(MentionEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMessageDeleteEvent(MessageDeleteEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMessageEmbedEvent(MessageEmbedEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMessagePinEvent(MessagePinEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMessageSendEvent(MessageSendEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMessageUnpinEvent(MessageUnpinEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onMessageUpdateEvent(MessageUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onPauseStateChangeEvent(PauseStateChangeEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onPresenceUpdateEvent(PresenceUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onProcessorAddEvent(ProcessorAddEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onProcessorRemoveEvent(ProcessorRemoveEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onReactionAddEvent(ReactionAddEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onReactionRemoveEvent(ReactionRemoveEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onReconnectFailureEvent(ReconnectFailureEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onReconnectSuccessEvent(ReconnectSuccessEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onResumedEvent(ResumedEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onRoleCreateEvent(RoleCreateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onRoleDeleteEvent(RoleDeleteEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onRoleUpdateEvent(RoleUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onShardReadyEvent(ShardReadyEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onShuffleEvent(ShuffleEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onTrackFinishEvent(TrackFinishEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onTrackQueueEvent(TrackQueueEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onTrackSkipEvent(TrackSkipEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onTrackStartEvent(TrackStartEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onTypingEvent(TypingEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onUserJoinEvent(UserJoinEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onUserSpeakingEvent(UserSpeakingEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onUserUpdateEvent(UserUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onUserVoiceChannelJoinEvent(UserVoiceChannelJoinEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onUserVoiceChannelLeaveEvent(UserVoiceChannelLeaveEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onUserVoiceChannelMoveEvent(UserVoiceChannelMoveEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onVoiceChannelCreateEvent(VoiceChannelCreateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onVoiceChannelDeleteEvent(VoiceChannelDeleteEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onVoiceChannelUpdateEvent(VoiceChannelUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onVoiceDisconnectedEvent(VoiceDisconnectedEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onVoicePingEvent(VoicePingEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onVolumeChangeEvent(VolumeChangeEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onWebhookCreateEvent(WebhookCreateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onWebhookDeleteEvent(WebhookDeleteEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 
     @EventSubscriber
     public void onWebhookUpdateEvent(WebhookUpdateEvent event) {
-        if (registeredEvents.get(event.getClass()) != null) {
-            registeredEvents.get(event.getClass()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
+        if (registeredEvents.get(event.getClass().getSimpleName()) != null) {
+            registeredEvents.get(event.getClass().getSimpleName()).forEach((e, m) -> m.call(CoerceJavaToLua.coerce(event)));
         }
     }
 

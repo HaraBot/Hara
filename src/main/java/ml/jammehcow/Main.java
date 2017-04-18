@@ -26,13 +26,13 @@ import static ml.jammehcow.Config.ConfigWrapper.getConfig;
 
 public class Main {
     // Sets logger to SLF4J with logback
-    public static final Logger logger   = LoggerFactory.getLogger(Main.class);
-    private static Config config        = getConfig();
+    public static final Logger logger           = LoggerFactory.getLogger(Main.class);
+    private static Config config                = getConfig();
 
-    public static final String prefix   = config.prefix;
-    public static final String YouTubeAPIKey  = config.youtubeAPIKey;
+    public static final String prefix           = config.prefix;
+    public static final String YouTubeAPIKey    = config.youtubeAPIKey;
 
-    public static boolean debug         = false;
+    public static boolean debug                 = false;
     public static IDiscordClient client;
 
     //public static AudioManager manager;
