@@ -7,7 +7,7 @@ import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import sx.blah.discord.util.EmbedBuilder;
-import sx.blah.discord.util.RequestBuffer;
+import sx.blah.discord.util.RateLimitException;
 
 /**
  * Author: jammehcow.
@@ -28,7 +28,19 @@ public class PluginBotWrapper extends LuaTable {
         set("requestBuffer", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                RequestBuffer.request(() -> args.checkfunction(1).call());
+                try {
+                    args.checkfunction(1).call();
+                } catch (RateLimitException e) {
+                    new java.util.Timer().schedule(
+                            new java.util.TimerTask() {
+                                @Override
+                                public void run() {
+                                    args.checkfunction(1).call();
+                                }
+                            },
+                            e.getRetryDelay()
+                    );
+                }
                 return LuaValue.NIL;
             }
         });
