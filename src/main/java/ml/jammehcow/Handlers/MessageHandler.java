@@ -104,14 +104,6 @@ public class MessageHandler {
                 } else {
                     m.getChannel().sendMessage("Sorry " + m.getAuthor().mention() + " but you don't have those privileges. Maybe quit Discord instead?");
                 }
-            /*} else if (command.equals("play")) {
-                Optional<String> resultQueue = Main.manager.queueYouTubeVid(content.replace(Main.prefix + "play ", "").trim().toLowerCase(), m.getGuild().getID());
-
-                if (!resultQueue.isPresent())
-                    Main.manager.joinForPlay(m);
-                else {
-                    // stub
-                }*/
             } else if (command.equals("reload")) {
                 if (isTrusted(m)) {
                     PluginHandler.reloadAllPlugins();
