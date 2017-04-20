@@ -17,7 +17,7 @@ public class PluginLoggingWrapper extends LuaTable {
     private static Logger logger = LoggerFactory.getLogger(PluginLoggingWrapper.class);
 
     public PluginLoggingWrapper(Plugin plugin) {
-        String prefix = "[plugin-" + plugin.getName() + "] ";
+        String prefix = "[" + plugin.getName() + "] ";
 
         set("info", new VarArgFunction() {
             @Override
