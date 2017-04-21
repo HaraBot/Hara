@@ -136,9 +136,10 @@ public class MessageHandler {
     }
 
     private static boolean parseCommand(IMessage m) {
+        String command = m.getContent().split(" ")[0].replace(Main.prefix, "");
         for (Plugin p : PluginLoader.getLoadedPlugins()) {
             for (PluginCommand c : p.getCommands()) {
-                if (m.getContent().startsWith(Main.prefix + c.getCommand())) {
+                if (command.equals(c.getCommand())) {
                     c.callCommand(m);
                     return true;
                 }
