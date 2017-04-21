@@ -51,6 +51,7 @@ public class PluginHandler {
         disableAll();
         logger.info("Reloading all plugins");
         EventHandlers.registeredEvents.clear();
+        EventHandlers.events.forEach((e) -> EventHandlers.registeredEvents.put(e.getSimpleName(), new ArrayList<>()));
         PluginLoader.loadAllPlugins();
     }
 

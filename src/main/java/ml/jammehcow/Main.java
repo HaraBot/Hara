@@ -12,9 +12,7 @@ import sx.blah.discord.api.events.Event;
 import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static ml.jammehcow.Config.ConfigWrapper.getConfig;
 
@@ -44,6 +42,8 @@ public class Main {
         Reflections reflections = new Reflections("sx.blah.discord.handle.impl.events");
         Set<Class<?extends Event>> subTypes = reflections.getSubTypesOf(Event.class);
         EventHandlers.events.addAll(subTypes);
+
+        EventHandlers.events.forEach((e) -> EventHandlers.registeredEvents.put(e.getSimpleName(), new ArrayList<>()));
 
         logger.info("Registered " + subTypes.size() + " events from Discord4J.");
 

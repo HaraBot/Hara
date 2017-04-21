@@ -38,8 +38,7 @@ public class PluginWrapper extends LuaTable {
         set("registerEvent", new VarArgFunction() {
             @Override
             public Varargs invoke(Varargs args) {
-                EventHandlers.registeredEvents.put(events.get(args.toint(1)).getSimpleName(), new HashMap<>());
-                EventHandlers.registeredEvents.get(events.get(args.toint(1)).getSimpleName()).put(plugin, args.checkfunction(2));
+                EventHandlers.registeredEvents.get(events.get(args.toint(1)).getSimpleName()).add(args.checkfunction(2));
                 return LuaValue.NIL;
             }
         });
