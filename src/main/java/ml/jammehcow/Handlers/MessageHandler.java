@@ -45,7 +45,7 @@ public class MessageHandler {
 
                 RequestBuffer.request(() -> {
                     try {
-                        m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, here's a list of installed plugins.", embed.build(), false);
+                        m.getChannel().sendMessage(m.getAuthor().mention() + ", here's a list of installed plugins.", embed.build(), false);
                     } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
                 });
             } else if (command.equals("plugin")) {
@@ -123,7 +123,7 @@ public class MessageHandler {
                 if (!parseCommand(m)) {
                     RequestBuffer.request(() -> {
                         try {
-                            m.getChannel().sendMessage("<@" + m.getAuthor().getID() + ">, that's not a valid command!");
+                            m.getChannel().sendMessage(m.getAuthor().mention() + ", that's not a valid command!");
                         } catch (MissingPermissionsException | DiscordException e) { e.printStackTrace(); }
                     });
                 }
