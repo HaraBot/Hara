@@ -1,10 +1,7 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
 import ml.jammehcow.Main;
-import org.luaj.vm2.LuaError;
-import org.luaj.vm2.LuaTable;
-import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.Varargs;
+import org.luaj.vm2.*;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import sx.blah.discord.util.EmbedBuilder;
@@ -29,18 +26,7 @@ public class PluginBotWrapper extends LuaTable {
         set("requestBuffer", new VarArgFunction() {
             @Override
             public synchronized Varargs invoke(Varargs args) {
-                try {
-                    args.checkfunction(1).call();
-                } catch (LuaError e) {
-                    if (e.getCause() instanceof RateLimitException) {
-                        try {
-                            long waitPeriod = ((RateLimitException) e.getCause()).getRetryDelay();
-                            wait(waitPeriod);
-                            args.checkfunction(1).call();
-                        } catch (Exception e1) { e1.printStackTrace(); }
-                    }
-                }
-                return LuaValue.NIL;
+                return sendRequest(args.checkfunction(1));
             }
         });
 
@@ -50,5 +36,20 @@ public class PluginBotWrapper extends LuaTable {
                 return CoerceJavaToLua.coerce(new EmbedBuilder());
             }
         });
+    }
+
+    private synchronized LuaValue sendRequest(LuaFunction func) {
+        try { func.call(); }
+        catch (LuaError e) {
+            if (e.getCause() instanceof RateLimitException) {
+                try {
+                    long waitPeriod = ((RateLimitException) e.getCause()).getRetryDelay();
+                    wait(waitPeriod);
+                    // Call function recursively. At some point there'll be an opening.
+                    return sendRequest(func);
+                } catch (Exception e1) { e1.printStackTrace(); }
+            }
+        }
+        return LuaValue.NIL;
     }
 }
