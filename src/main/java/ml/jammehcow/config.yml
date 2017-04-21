@@ -4,7 +4,7 @@
 
 # Leave this line alone
 
-rev: 2
+rev: 3
 
 # The bot token you received when creating your bot.
 # More info can be found on the wiki https://github.com/jammehcow/jathemez-bot/wiki
@@ -15,16 +15,6 @@ token: "your_discord_bot_token"
 # The bot will only reply if this prefix is used.
 
 prefix: "!"
-
-# Enable or disable LavaPlayer usage
-# LavaPlayer handles YouTube and audio file playback. Disabling this will stop Lua from interacting with it.
-
-lavaplayer: false
-
-# YouTube API key
-# AN API key is required to use the lavaplayer implementation. You can find out more at https://developers.google.com/youtube/registering_an_application
-
-youtubeAPIKey: "your_YouTube_API_key"
 
 # Enable or disable SQL usage
 # SQL may be required by some plugins. If a plugin requests it when it's disabled, you will be notified.
