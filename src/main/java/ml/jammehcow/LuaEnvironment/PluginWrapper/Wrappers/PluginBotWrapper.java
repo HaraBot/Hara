@@ -1,6 +1,7 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
 import ml.jammehcow.Main;
+import org.luaj.vm2.LuaError;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
@@ -27,19 +28,17 @@ public class PluginBotWrapper extends LuaTable {
 
         set("requestBuffer", new VarArgFunction() {
             @Override
-            public Varargs invoke(Varargs args) {
+            public synchronized Varargs invoke(Varargs args) {
                 try {
                     args.checkfunction(1).call();
-                } catch (RateLimitException e) {
-                    new java.util.Timer().schedule(
-                            new java.util.TimerTask() {
-                                @Override
-                                public void run() {
-                                    args.checkfunction(1).call();
-                                }
-                            },
-                            e.getRetryDelay()
-                    );
+                } catch (LuaError e) {
+                    if (e.getCause() instanceof RateLimitException) {
+                        try {
+                            long waitPeriod = ((RateLimitException) e.getCause()).getRetryDelay();
+                            wait(waitPeriod);
+                            args.checkfunction(1).call();
+                        } catch (Exception e1) { e1.printStackTrace(); }
+                    }
                 }
                 return LuaValue.NIL;
             }
