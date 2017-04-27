@@ -47,12 +47,6 @@ public class EventHandlers {
     @EventSubscriber
     public void onReadyEvent(ReadyEvent event) {
         LuaEnvironment.init();
-
-        /*try {
-            Main.manager = new AudioManager();
-        } catch (UnknownBindingException e) {
-            e.printStackTrace();
-        }*/
     }
 
     // TODO: convert to modular IListener creation and store in list. 
