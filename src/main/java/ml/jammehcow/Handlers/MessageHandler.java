@@ -9,6 +9,7 @@ import sx.blah.discord.handle.obj.Permissions;
 import sx.blah.discord.util.*;
 
 import java.awt.*;
+import java.util.regex.Pattern;
 
 import static ml.jammehcow.Main.client;
 
@@ -22,7 +23,7 @@ public class MessageHandler {
         IMessage m = event.getMessage();
         String content = m.getContent().trim();
 
-        if (content.startsWith(Main.prefix)) {
+        if (content.startsWith(Main.prefix) && !content.matches(Pattern.quote(Main.prefix) + "{2,}+")) {
             content = content.replace(Main.prefix, "");
             String command = content.split(" ")[0];
 
