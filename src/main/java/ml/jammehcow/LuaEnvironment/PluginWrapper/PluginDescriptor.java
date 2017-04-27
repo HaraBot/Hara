@@ -1,8 +1,7 @@
 package ml.jammehcow.LuaEnvironment.PluginWrapper;
 
 /**
- * Author: jammehcow.
- * Date: 4/01/17.
+ * @author jammehcow
  */
 
 public class PluginDescriptor {

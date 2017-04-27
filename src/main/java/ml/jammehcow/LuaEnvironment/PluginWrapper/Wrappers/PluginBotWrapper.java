@@ -8,8 +8,7 @@ import sx.blah.discord.util.EmbedBuilder;
 import sx.blah.discord.util.RateLimitException;
 
 /**
- * Author: jammehcow.
- * Date: 26/03/17.
+ * @author jammehcow
  */
 
 public class PluginBotWrapper extends LuaTable {

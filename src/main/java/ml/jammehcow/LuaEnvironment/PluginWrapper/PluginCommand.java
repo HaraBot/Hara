@@ -9,8 +9,7 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import sx.blah.discord.handle.obj.IMessage;
 
 /**
- * Author: jammehcow.
- * Date: 6/01/17.
+ * @author jammehcow
  */
 
 public class PluginCommand {

@@ -13,8 +13,7 @@ import java.awt.*;
 import static ml.jammehcow.Main.client;
 
 /**
- * Author: jammehcow.
- * Date: 30/03/17.
+ * @author jammehcow
  */
 
 public class MessageHandler {

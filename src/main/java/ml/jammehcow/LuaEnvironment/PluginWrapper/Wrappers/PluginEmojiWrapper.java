@@ -7,8 +7,7 @@ import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 
 /**
- * Author: jammehcow.
- * Date: 29/01/17.
+ * @author jammehcow
  */
 
 public class PluginEmojiWrapper extends LuaTable {

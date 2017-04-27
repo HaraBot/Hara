@@ -14,8 +14,7 @@ import java.util.Map;
 import static ml.jammehcow.Main.logger;
 
 /**
- * Author: jammehcow.
- * Date: 4/01/17.
+ * @author jammehcow
  */
 
 public class Plugin {

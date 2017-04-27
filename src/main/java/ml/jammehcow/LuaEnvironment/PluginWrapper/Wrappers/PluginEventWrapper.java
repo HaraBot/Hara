@@ -5,8 +5,7 @@ import org.luaj.vm2.LuaTable;
 import static ml.jammehcow.Handlers.EventHandlers.events;
 
 /**
- * Author: jammehcow.
- * Date: 27/01/17.
+ * @author jammehcow
  */
 
 public class PluginEventWrapper extends LuaTable {

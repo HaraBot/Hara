@@ -37,8 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Author: jammehcow.
- * Date: 22/12/16.
+ * @author jammehcow
  */
 
 public class EventHandlers {
@@ -55,6 +54,8 @@ public class EventHandlers {
             e.printStackTrace();
         }*/
     }
+
+    // TODO: convert to modular IListener creation and store in list. 
 
     @EventSubscriber
     public void onAllUsersReceivedEvent(AllUsersReceivedEvent event) {

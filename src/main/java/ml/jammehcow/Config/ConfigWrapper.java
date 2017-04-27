@@ -8,8 +8,7 @@ import java.io.*;
 import java.net.URISyntaxException;
 
 /**
- * Author: jammehcow.
- * Date: 21/12/16.
+ * @author jammehcow
  */
 
 public class ConfigWrapper {

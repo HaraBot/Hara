@@ -20,8 +20,7 @@ import java.util.Set;
 import static ml.jammehcow.Config.ConfigWrapper.getConfig;
 
 /**
- * Author: jammehcow.
- * Date: 21/12/16.
+ * @author jammehcow
  */
 
 public class Main {

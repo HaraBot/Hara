@@ -12,8 +12,7 @@ import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import static ml.jammehcow.Handlers.EventHandlers.events;
 
 /**
- * Author: jammehcow.
- * Date: 6/01/17.
+ * @author jammehcow
  */
 
 public class PluginWrapper extends LuaTable {

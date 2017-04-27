@@ -1,8 +1,7 @@
 package ml.jammehcow.Config;
 
 /**
- * Author: jammehcow.
- * Date: 24/12/16.
+ * @author jammehcow
  */
 
 public class Config {

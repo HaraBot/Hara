@@ -9,8 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Author: jammehcow.
- * Date: 11/01/17.
+ * @author jammehcow
  */
 
 public class PluginLoggingWrapper extends LuaTable {

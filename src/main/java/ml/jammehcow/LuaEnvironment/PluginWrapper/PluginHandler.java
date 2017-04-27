@@ -12,8 +12,7 @@ import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPl
 import static ml.jammehcow.Main.logger;
 
 /**
- * Author: jammehcow.
- * Date: 4/01/17.
+ * @author jammehcow
  */
 
 public class PluginHandler {

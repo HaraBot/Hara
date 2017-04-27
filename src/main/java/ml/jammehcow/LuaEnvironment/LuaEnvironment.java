@@ -6,8 +6,7 @@ import org.luaj.vm2.Globals;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
 /**
- * Author: jammehcow.
- * Date: 6/01/17.
+ * @author jammehcow
  */
 
 public class LuaEnvironment {
