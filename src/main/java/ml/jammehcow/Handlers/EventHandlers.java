@@ -49,7 +49,7 @@ public class EventHandlers {
         LuaEnvironment.init();
     }
 
-    // TODO: convert to modular IListener creation and store in list. 
+    // TODO: convert to modular IListener creation and store in list.
 
     @EventSubscriber
     public void onAllUsersReceivedEvent(AllUsersReceivedEvent event) {
