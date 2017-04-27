@@ -1,7 +1,6 @@
 package ml.jammehcow.Handlers;
 
 import ml.jammehcow.LuaEnvironment.LuaEnvironment;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import sx.blah.discord.api.events.Event;

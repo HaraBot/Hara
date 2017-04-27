@@ -9,8 +9,6 @@ import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
-import java.util.HashMap;
-
 import static ml.jammehcow.Handlers.EventHandlers.events;
 
 /**

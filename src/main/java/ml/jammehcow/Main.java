@@ -12,7 +12,10 @@ import sx.blah.discord.api.events.Event;
 import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import static ml.jammehcow.Config.ConfigWrapper.getConfig;
 
