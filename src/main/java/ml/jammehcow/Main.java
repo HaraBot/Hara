@@ -2,7 +2,6 @@ package ml.jammehcow;
 
 import ml.jammehcow.Config.Config;
 import ml.jammehcow.Handlers.EventHandlers;
-import ml.jammehcow.Handlers.MessageHandler;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +52,6 @@ public class Main {
             client = getClient();
             EventDispatcher dispatcher = client.getDispatcher();
             dispatcher.registerListener(new EventHandlers());
-            dispatcher.registerListener(new MessageHandler());
         }
     }
 
