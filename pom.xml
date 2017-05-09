@@ -36,7 +36,7 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <outputDirectory>out/</outputDirectory>
+                    <outputDirectory>target/</outputDirectory>
                     <archive>
                         <manifest>
                             <mainClass>nz.co.jammehcow.Main</mainClass>
