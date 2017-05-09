@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static ml.jammehcow.Main.logger;
+import static nz.co.jammehcow.Main.logger;
 
 /**
  * @author jammehcow
@@ -24,7 +24,7 @@ public class PluginLoader {
             Map configMap = (Map)c.read();
 
             if (!checkConfig(configMap)) {
-                throw new YamlException("Your conf.yml is missing some keys. Have a look at the example https://github.com/jammehcow/Hara-Example-Plugin/blob/master/Example-Plugin/conf.yml and see what you're missing from the \"Required keys\" section.");
+                throw new YamlException("Your conf.yml (at " + config.getAbsolutePath() + ") is missing some keys.\nHave a look at the example https://github.com/jammehcow/Hara-Example-Plugin/blob/master/Example-Plugin/conf.yml and see what you're missing from the \"Required keys\" section.");
             } else {
                 String name = (String)configMap.get("name");
 
@@ -35,9 +35,6 @@ public class PluginLoader {
     }
 
     public static ArrayList<Plugin> getLoadedPlugins() { return loadedPlugins; }
-
-    // Keeping for a possible disable command.
-    //public static void removePlugin(Plugin p) { loadedPlugins.remove(p); }
 
     public static void removeAllPlugins() { loadedPlugins.clear(); }
 

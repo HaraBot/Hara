@@ -1,8 +1,8 @@
-package ml.jammehcow.Config;
+package nz.co.jammehcow.Config;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
-import ml.jammehcow.Main;
+import nz.co.jammehcow.Main;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -51,14 +51,14 @@ public class ConfigWrapper {
         OutputStream resStreamOut = null;
 
         try {
-            stream = Main.class.getResourceAsStream("config.yml");
+            stream = Main.class.getClassLoader().getResourceAsStream("config.yml");
             if (stream == null) throw new Exception("Cannot get resource \"" + "config.yml" + "\" from Jar file.");
 
             int readBytes;
             byte[] buffer = new byte[4096];
 
-            String jarFolder = new File(Config.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile().getPath().replace('\\', '/');
-            resStreamOut = new FileOutputStream(jarFolder + File.separator + "config.yml");
+            if (Main.getJarFolder() == null) throw new IOException("Unable to locate the jar directory.");
+            resStreamOut = new FileOutputStream(Main.getJarFolder() + "config.yml");
 
             while ((readBytes = stream.read(buffer)) > 0) resStreamOut.write(buffer, 0, readBytes);
         } catch (Exception ex) {

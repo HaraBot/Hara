@@ -1,8 +1,8 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
 import org.luaj.vm2.LuaTable;
 
-import static ml.jammehcow.Handlers.EventHandlers.events;
+import static nz.co.jammehcow.Handlers.EventHandlers.events;
 
 /**
  * @author jammehcow

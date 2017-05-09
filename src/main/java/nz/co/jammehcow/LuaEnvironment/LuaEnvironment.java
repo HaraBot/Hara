@@ -1,7 +1,7 @@
-package ml.jammehcow.LuaEnvironment;
+package nz.co.jammehcow.LuaEnvironment;
 
-import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader;
-import ml.jammehcow.Main;
+import nz.co.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader;
+import nz.co.jammehcow.Main;
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.lib.jse.JsePlatform;
 

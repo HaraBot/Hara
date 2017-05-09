@@ -1,4 +1,4 @@
-package ml.jammehcow.Config;
+package nz.co.jammehcow.Config;
 
 /**
  * @author jammehcow

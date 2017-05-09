@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
 import com.vdurmont.emoji.EmojiParser;
 import org.luaj.vm2.LuaTable;

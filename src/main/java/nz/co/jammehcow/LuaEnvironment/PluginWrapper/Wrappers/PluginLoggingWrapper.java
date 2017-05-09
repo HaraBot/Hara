@@ -1,6 +1,6 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
+import nz.co.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;

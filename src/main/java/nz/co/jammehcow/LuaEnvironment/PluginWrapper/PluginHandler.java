@@ -1,15 +1,14 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper;
 
-import ml.jammehcow.Handlers.EventHandlers;
-import ml.jammehcow.Main;
+import nz.co.jammehcow.Handlers.EventHandlers;
+import nz.co.jammehcow.Main;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-import static ml.jammehcow.LuaEnvironment.PluginWrapper.PluginLoader.getLoadedPlugins;
-import static ml.jammehcow.Main.logger;
+import static nz.co.jammehcow.Main.logger;
 
 /**
  * @author jammehcow
@@ -54,14 +53,12 @@ public class PluginHandler {
         PluginLoader.loadAllPlugins();
     }
 
-    public static void enableAll() {
-        for (Plugin p : getLoadedPlugins()) p.enable();
-    }
+    public static void enableAll() { for (Plugin p : PluginLoader.getLoadedPlugins()) p.enable(); }
 
     public static void disableAll() {
-        for (Plugin p : getLoadedPlugins()) {
+        for (Plugin p : PluginLoader.getLoadedPlugins()) {
             // Disable each plugin in the list and remove it from the array.
-            // Disabling is not like enabling. It removes it from memory, there is no setting self.enabled to false unless done single.
+            // Disabling is not like enabling. It removes it from memory, there is no setting self.enabled to false.
             p.disable();
         }
 

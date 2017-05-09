@@ -1,15 +1,15 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
-import ml.jammehcow.Handlers.EventHandlers;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
+import nz.co.jammehcow.Handlers.EventHandlers;
+import nz.co.jammehcow.LuaEnvironment.PluginWrapper.Plugin;
+import nz.co.jammehcow.LuaEnvironment.PluginWrapper.PluginCommand;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.Varargs;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
-import static ml.jammehcow.Handlers.EventHandlers.events;
+import static nz.co.jammehcow.Handlers.EventHandlers.events;
 
 /**
  * @author jammehcow

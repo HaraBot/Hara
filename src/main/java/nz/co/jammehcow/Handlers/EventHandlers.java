@@ -1,8 +1,8 @@
-package ml.jammehcow.Handlers;
+package nz.co.jammehcow.Handlers;
 
-import ml.jammehcow.LuaEnvironment.LuaEnvironment;
-import ml.jammehcow.LuaEnvironment.PluginWrapper.*;
-import ml.jammehcow.Main;
+import nz.co.jammehcow.LuaEnvironment.LuaEnvironment;
+import nz.co.jammehcow.LuaEnvironment.PluginWrapper.*;
+import nz.co.jammehcow.Main;
 import org.luaj.vm2.LuaFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import sx.blah.discord.api.events.Event;
@@ -17,8 +17,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
-
-import static ml.jammehcow.Main.client;
 
 /**
  * @author jammehcow
@@ -51,8 +49,8 @@ public class EventHandlers {
                 EmbedBuilder embed = new EmbedBuilder()
                         .withFooterText("Hara made with \u2764 and \uD83D\uDD52 by James Upjohn")
                         .withTimestamp(System.currentTimeMillis())
-                        .withAuthorName(client.getOurUser().getName())
-                        .withAuthorIcon(client.getOurUser().getAvatarURL())
+                        .withAuthorName(Main.client.getOurUser().getName())
+                        .withAuthorIcon(Main.client.getOurUser().getAvatarURL())
                         .withColor(Color.GREEN);
 
                 if (!PluginLoader.getLoadedPlugins().isEmpty()) {
@@ -119,8 +117,7 @@ public class EventHandlers {
                 }
             } else if (command.equals("quit")) {
                 if (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR)) {
-                    client.logout();
-                    System.exit(0);
+                    Main.shutdown();
                 } else {
                     m.getChannel().sendMessage("Sorry " + m.getAuthor().mention() + " but you don't have those privileges. Maybe quit Discord instead?");
                 }
@@ -132,7 +129,7 @@ public class EventHandlers {
                     RequestBuffer.request(() -> m.getChannel().sendMessage(m.getAuthor().mention() + " you don't have permission to run that command!"));
                 }
             } else if (command.equals("help")) {
-                String helpMessage = "**Help for " + client.getOurUser().getDisplayName(m.getGuild()) + "**";
+                String helpMessage = "**Help for " + Main.client.getOurUser().getDisplayName(m.getGuild()) + "**";
 
                 RequestBuffer.request(() -> {
                     try {
@@ -152,7 +149,7 @@ public class EventHandlers {
     }
 
     public static boolean isTrusted(IMessage m) {
-        return (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR) || m.getAuthor() == client.getApplicationOwner());
+        return (m.getAuthor().getPermissionsForGuild(m.getGuild()).contains(Permissions.ADMINISTRATOR) || m.getAuthor() == Main.client.getApplicationOwner());
     }
 
     private static boolean parseCommand(IMessage m) {

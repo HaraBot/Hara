@@ -1,4 +1,4 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper;
 
 /**
  * @author jammehcow

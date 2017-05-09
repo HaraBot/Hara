@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ml.jammehcow</groupId>
+    <groupId>nz.co.jammehcow</groupId>
     <artifactId>Hara</artifactId>
     <version>1.1-BETA-SNAPSHOT</version>
 
@@ -14,15 +14,6 @@
 
     <build>
         <sourceDirectory>src/main/java/</sourceDirectory>
-
-        <resources>
-            <resource>
-                <directory>src/main/java/</directory>
-                <includes>
-                    <include>ml/jammehcow/config.yml</include>
-                </includes>
-            </resource>
-        </resources>
 
         <plugins>
             <plugin>
@@ -48,7 +39,7 @@
                     <outputDirectory>out/</outputDirectory>
                     <archive>
                         <manifest>
-                            <mainClass>ml.jammehcow.Main</mainClass>
+                            <mainClass>nz.co.jammehcow.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

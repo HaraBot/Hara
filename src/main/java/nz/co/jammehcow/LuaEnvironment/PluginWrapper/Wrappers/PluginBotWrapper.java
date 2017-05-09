@@ -1,6 +1,6 @@
-package ml.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
+package nz.co.jammehcow.LuaEnvironment.PluginWrapper.Wrappers;
 
-import ml.jammehcow.Main;
+import nz.co.jammehcow.Main;
 import org.luaj.vm2.*;
 import org.luaj.vm2.lib.VarArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
